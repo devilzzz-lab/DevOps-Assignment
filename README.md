@@ -126,7 +126,7 @@ The project follows professional Git workflows, container best practices, cloud-
   <li>Secret management using cloud-native services</li>
 </ul>
 
-<h4>Deliverable</h4>
+<h4>Working</h4>
 <p>Reusable Terraform-based infrastructure for AWS and Azure.</p>
 
 <h3>🟪 PHASE 6 – Monitoring, Alerting &amp; Observability (Planned)</h3>
@@ -141,7 +141,7 @@ The project follows professional Git workflows, container best practices, cloud-
   <li>Configure alerts for failures and resource saturation</li>
 </ul>
 
-<h4>Deliverable</h4>
+<h4>⏳Pending</h4>
 <p>Production-grade monitoring and alerting setup.</p>
 
 <h3>🟫 PHASE 7 – Load Balancing &amp; Resiliency (Planned)</h3>
@@ -156,7 +156,7 @@ The project follows professional Git workflows, container best practices, cloud-
   <li>Confirm zero-downtime availability</li>
 </ul>
 
-<h4>Deliverable</h4>
+<h4>⏳Pending</h4>
 <p>Highly available and resilient application deployment.</p>
 
 <h2>Technical Stack</h2>
