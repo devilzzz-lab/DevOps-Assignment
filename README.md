@@ -1,125 +1,184 @@
-# DevOps Assignment
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps Assignment — Multi-Cloud Automation Project</title>
+</head>
+<body>
 
-This project consists of a FastAPI backend and a Next.js frontend that communicates with the backend.
+<h1>DevOps Assignment — Multi-Cloud Automation Project</h1>
 
-## Project Structure
+<p><strong>Status:</strong></p>
+<ul>
+  <li>Phase 2 (Backend &amp; Git Workflow) completed.</li>
+  <li>Phase 3 (Frontend Dockerization &amp; Testing) in progress.</li>
+  <li>Phase 4–7 planned.</li>
+</ul>
 
-```
-.
-├── backend/               # FastAPI backend
-│   ├── app/
-│   │   └── main.py       # Main FastAPI application
-│   └── requirements.txt    # Python dependencies
-└── frontend/              # Next.js frontend
-    ├── pages/
-    │   └── index.js     # Main page
-    ├── public/            # Static files
-    └── package.json       # Node.js dependencies
-```
+<p>
+This project demonstrates end-to-end DevOps practices by designing, containerizing, testing, and deploying a two-tier web application across multiple cloud platforms using automated CI/CD pipelines and Infrastructure as Code. [conversation_history:1]
+</p>
+<p>
+The project follows professional Git workflows, container best practices, cloud-native architecture, and production-grade observability and security practices. [conversation_history:1]
+</p>
 
-## Prerequisites
+<h2>Project Overview</h2>
+<p>The application consists of:</p>
+<ul>
+  <li>Backend service built using FastAPI (Python)</li>
+  <li>Frontend application built using Next.js</li>
+  <li>Docker-based containerization</li>
+  <li>GitHub-based version control and Pull Request workflow</li>
+  <li>CI/CD automation using GitHub Actions (planned)</li>
+  <li>Multi-cloud deployment using Terraform</li>
+  <li>Target clouds: AWS and Azure</li>
+</ul>
 
-- Python 3.8+
-- Node.js 16+
-- npm or yarn
+<h2>Highlights</h2>
+<ul>
+  <li>Structured Git workflow using main, develop, and feature branches</li>
+  <li>Backend implemented using FastAPI with clean REST APIs</li>
+  <li>Backend unit tests written using pytest</li>
+  <li>Backend Dockerized using multi-stage builds and non-root user</li>
+  <li>Environment-based configuration support</li>
+  <li>Production-ready repository structure</li>
+  <li>Cloud-ready application design</li>
+</ul>
 
-## Backend Setup
+<h2>Project Phases</h2>
 
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
+<h3>🟩 PHASE 1 – Version Control &amp; Git Workflow (Completed)</h3>
+<h4>Objective</h4>
+<p>Establish a professional Git workflow aligned with real-world DevOps practices. [conversation_history:1]</p>
 
-2. Create a virtual environment (recommended):
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: .\venv\Scripts\activate
-   ```
+<h4>Key activities</h4>
+<ul>
+  <li>Forked the provided repository</li>
+  <li>Maintained original project structure</li>
+  <li>Implemented branch strategy: main, develop, feature/*</li>
+  <li>Used feature branches for development</li>
+  <li>Merged changes using Pull Requests</li>
+  <li>Avoided direct commits to main</li>
+  <li>Used clear and meaningful commit messages</li>
+</ul>
 
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+<h4>Deliverable</h4>
+<p>Version-controlled repository with clean commit history and Pull Request workflow. [conversation_history:1]</p>
 
-4. Run the FastAPI server:
-   ```bash
-   uvicorn app.main:app --reload --port 8000
-   ```
+<h3>🟦 PHASE 2 – Backend API Implementation &amp; Dockerization (Completed)</h3>
+<h4>Objective</h4>
+<p>Develop a production-ready backend service with testing and containerization. [conversation_history:1]</p>
 
-   The backend will be available at `http://localhost:8000`
+<h4>Key activities</h4>
+<ul>
+  <li>Implemented FastAPI backend service</li>
+  <li>Exposed <code>/api/health</code> and <code>/api/message</code> endpoints</li>
+  <li>Added environment-based configuration</li>
+  <li>Wrote unit tests for backend endpoints</li>
+  <li>Dockerized backend using multi-stage Dockerfile</li>
+  <li>Ensured non-root container execution</li>
+</ul>
 
-## Frontend Setup
+<h4>Deliverable</h4>
+<p>Tested and Dockerized FastAPI backend ready for CI/CD and cloud deployment. [conversation_history:1]</p>
 
-1. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
+<h3>🟨 PHASE 3 – Frontend Testing &amp; Dockerization (In Progress)</h3>
+<h4>Objective</h4>
+<p>Containerize frontend application and validate backend integration. [conversation_history:1]</p>
 
-2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn
-   ```
+<h4>Planned activities</h4>
+<ul>
+  <li>Add frontend unit and end-to-end tests</li>
+  <li>Dockerize Next.js application using multi-stage builds</li>
+  <li>Configure environment-based backend API URL</li>
+  <li>Integrate frontend and backend via Docker Compose</li>
+</ul>
 
-3. Configure the backend URL (if different from default):
-   - Open `.env.local`
-   - Update `NEXT_PUBLIC_API_URL` with your backend URL
-   - Example: `NEXT_PUBLIC_API_URL=https://your-backend-url.com`
+<h4>Deliverable</h4>
+<p>Production-ready frontend container with automated testing. [conversation_history:1]</p>
 
-4. Run the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+<h3>🟧 PHASE 4 – CI/CD Pipeline Automation (Planned)</h3>
+<h4>Objective</h4>
+<p>Automate build, test, containerization, and deployment workflows. [conversation_history:1]</p>
 
-   The frontend will be available at `http://localhost:3000`
+<h4>Planned activities</h4>
+<ul>
+  <li>Configure GitHub Actions pipelines</li>
+  <li>Trigger pipelines on develop and main branches</li>
+  <li>Build and tag Docker images using Git SHA</li>
+  <li>Push images to AWS ECR and Azure ACR</li>
+  <li>Automate deployments to AWS and Azure</li>
+</ul>
 
-## Changing the Backend URL
+<h4>Deliverable</h4>
+<p>Fully automated CI/CD pipeline with zero manual steps. [conversation_history:1]</p>
 
-To change the backend URL that the frontend connects to:
+<h3>🟥 PHASE 5 – Infrastructure as Code (Multi-Cloud) (Planned)</h3>
+<h4>Objective</h4>
+<p>Provision cloud infrastructure using Terraform. [conversation_history:1]</p>
 
-1. Open the `.env.local` file in the frontend directory
-2. Update the `NEXT_PUBLIC_API_URL` variable with your new backend URL
-3. Save the file
-4. Restart the Next.js development server for changes to take effect
+<h4>Planned activities</h4>
+<ul>
+  <li>AWS ECS Fargate with Application Load Balancer</li>
+  <li>Azure Container Apps or AKS</li>
+  <li>VPC/VNet networking and security controls</li>
+  <li>IAM roles and managed identities</li>
+  <li>Secret management using cloud-native services</li>
+</ul>
 
-Example:
-```
-NEXT_PUBLIC_API_URL=https://your-new-backend-url.com
-```
+<h4>Deliverable</h4>
+<p>Reusable Terraform-based infrastructure for AWS and Azure. [conversation_history:1]</p>
 
-## For deployment:
-   ```bash
-   npm run build
-   # or
-   yarn build
-   ```
+<h3>🟪 PHASE 6 – Monitoring, Alerting &amp; Observability (Planned)</h3>
+<h4>Objective</h4>
+<p>Implement monitoring and alerting for applications and infrastructure. [conversation_history:1]</p>
 
-   AND
+<h4>Planned activities</h4>
+<ul>
+  <li>Configure cloud-native monitoring services</li>
+  <li>Collect CPU, memory, and request metrics</li>
+  <li>Create dashboards for application health</li>
+  <li>Configure alerts for failures and resource saturation</li>
+</ul>
 
-   ```bash
-   npm run start
-   # or
-   yarn start
-   ```
+<h4>Deliverable</h4>
+<p>Production-grade monitoring and alerting setup. [conversation_history:1]</p>
 
-   The frontend will be available at `http://localhost:3000`
+<h3>🟫 PHASE 7 – Load Balancing &amp; Resiliency (Planned)</h3>
+<h4>Objective</h4>
+<p>Validate high availability and fault tolerance. [conversation_history:1]</p>
 
-## Testing the Integration
+<h4>Planned activities</h4>
+<ul>
+  <li>Run multiple container instances</li>
+  <li>Validate load balancer traffic distribution</li>
+  <li>Simulate instance failures</li>
+  <li>Confirm zero-downtime availability</li>
+</ul>
 
-1. Ensure both backend and frontend servers are running
-2. Open the frontend in your browser (default: http://localhost:3000)
-3. If everything is working correctly, you should see:
-   - A status message indicating the backend is connected
-   - The message from the backend: "You've successfully integrated the backend!"
-   - The current backend URL being used
+<h4>Deliverable</h4>
+<p>Highly available and resilient application deployment. [conversation_history:1]</p>
 
-## API Endpoints
+<h2>Technical Stack</h2>
+<ul>
+  <li><strong>Backend:</strong> FastAPI (Python)</li>
+  <li><strong>Frontend:</strong> Next.js</li>
+  <li><strong>Containerization:</strong> Docker</li>
+  <li><strong>CI/CD:</strong> GitHub Actions</li>
+  <li><strong>IaC:</strong> Terraform</li>
+  <li><strong>Cloud:</strong> AWS, Azure</li>
+  <li><strong>Testing:</strong> Pytest, Jest</li>
+  <li><strong>Monitoring:</strong> CloudWatch, Azure Monitor</li>
+  <li><strong>Version Control:</strong> Git &amp; GitHub</li>
+</ul>
 
-- `GET /api/health`: Health check endpoint
-  - Returns: `{"status": "healthy", "message": "Backend is running successfully"}`
+<h2>Documentation</h2>
+<ul>
+  <li>Project overview and workflow: Root README</li>
+  <li>Backend service documentation: backend README</li>
+  <li>Frontend application documentation: frontend README</li>
+</ul>
 
-- `GET /api/message`: Get the integration message
-  - Returns: `{"message": "You've successfully integrated the backend!"}`
+</body>
+</html>
