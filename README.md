@@ -10,9 +10,9 @@
 
 <p><strong>Status:</strong></p>
 <ul>
-  <li>Phase 2 (Backend &amp; Git Workflow) completed.</li>
-  <li>Phase 3 (Frontend Dockerization &amp; Testing) in progress.</li>
-  <li>Phase 4–7 planned.</li>
+  <li>Upto Phase 4 (Backend &amp; Git Workflow) completed.</li>
+  <li>Phase 5 (Frontend Dockerization &amp; Testing) in progress.</li>
+  <li>Phase 6–7 planned.</li>
 </ul>
 
 <p>
