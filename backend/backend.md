@@ -46,7 +46,9 @@
 </ul>
 <p>The container exposes port <strong>8000</strong>.</p>
 
-<p><code>cd backend/Dockerfile </code></p>
+<p>Run<code>cd backend</code></p>
+
+<p>Build<code>docker build -t backend-api .</code></p>
 
 <p>Run<code>docker run -p 8000:8000 backend-api</code></p>
 
@@ -54,9 +56,12 @@
 
 <h3>Health Check</h3>
 <pre><code>curl http://localhost:8000/api/health</code></pre>
+<p>{"message": "You've successfully integrated the backend!"}</p>
 
 <h3>Message Endpoint</h3>
 <pre><code>curl http://localhost:8000/api/message</code></pre>
+<p>{"status": "healthy", "message": "Backend is running successfully"}</p>
+
 
 <h2>Environment Variables</h2>
 
