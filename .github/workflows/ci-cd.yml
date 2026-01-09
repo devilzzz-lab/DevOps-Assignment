@@ -118,6 +118,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
@@ -125,40 +128,15 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: Fetch current task definition
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Terraform Init
+      working-directory: terraform/aws
+      run: terraform init
+
+    - name: Terraform Apply (deploy new image)
+      working-directory: terraform/aws
       run: |
-        aws ecs describe-task-definition \
-          --task-definition backend \
-          --query taskDefinition \
-          > taskdef.json
-
-    - name: Create new task definition revision with updated image
-      run: |
-        IMAGE_URI="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/backend:${{ github.sha }}"
-
-        cat taskdef.json \
-        | jq --arg IMAGE "$IMAGE_URI" '
-          del(
-            .taskDefinitionArn,
-            .revision,
-            .status,
-            .requiresAttributes,
-            .compatibilities,
-            .registeredAt,
-            .registeredBy
-          )
-          | .containerDefinitions[0].image = $IMAGE
-        ' > new-taskdef.json
-
-    - name: Register new task definition
-      run: |
-        aws ecs register-task-definition \
-          --cli-input-json file://new-taskdef.json
-
-    - name: Update ECS service to new task definition
-      run: |
-        aws ecs update-service \
-          --cluster devops-assignment-cluster \
-          --service backend \
-          --task-definition backend
-
+        terraform apply -auto-approve \
+          -var="backend_image=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/backend:${{ github.sha }}"

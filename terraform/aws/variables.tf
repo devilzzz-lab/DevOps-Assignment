@@ -6,5 +6,9 @@ variable "project_name" {
   default = "devops-assignment"
 }
 
-variable "backend_image" {}
+variable "backend_image" {
+  description = "Backend image URI"
+  type        = string
+}
+
 variable "frontend_image" {}
