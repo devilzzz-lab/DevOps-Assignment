@@ -16,51 +16,10 @@
   <li><code>AWS_SECRET_ACCESS_KEY</code></li>
   <li><code>AWS_REGION</code></li>
   <li><code>AWS_ACCOUNT_ID</code></li>
+  <li><code>AZURE_CREDENTIALS</code></li>
 </ul>
 
-<p><strong>Also make sure ECR repositories exist:</strong></p>
-<ul>
-  <li><code>backend</code></li>
-  <li><code>frontend</code></li>
-</ul>
-
-<h2>2️⃣ Azure Secrets (ACR)</h2>
-
-<h3>STEP 1️⃣ Create <code>AZURE_CREDENTIALS</code> secret (ONE TIME)</h3>
-<p>Create a single JSON secret instead of multiple fields.</p>
-
-<pre><code>az ad sp create-for-rbac \
-  --name devops-assignment-sp \
-  --role acrpush \
-  --scopes /subscriptions/&lt;SUBSCRIPTION_ID&gt;/resourceGroups/devops-assignment-rg/providers/Microsoft.ContainerRegistry/registries/devopsassignmentacr \
-  --sdk-auth
-</code></pre>
-
-<p><strong>⚠️ Replace <code>&lt;SUBSCRIPTION_ID&gt;</code> properly.</strong></p>
-
-<p><strong>Output will look like:</strong></p>
-<pre>{
-  "clientId": "xxxx",
-  "clientSecret": "yyyy", 
-  "subscriptionId": "zzzz",
-  "tenantId": "aaaa",
-  "activeDirectoryEndpointUrl": "...",
-  "resourceManagerEndpointUrl": "...",
-  "activeDirectoryGraphResourceId": "...",
-  "sqlManagementEndpointUrl": "...",
-  "galleryEndpointUrl": "...",
-  "managementEndpointUrl": "..."
-}</pre>
-
-<h3>STEP 2️⃣ Add this as ONE GitHub Secret</h3>
-<ol>
-  <li>GitHub → Settings → Secrets → Actions → New repository secret</li>
-  <li><strong>Name:</strong> <code>AZURE_CREDENTIALS</code></li>
-  <li><strong>Value:</strong> 👉 paste the <strong>FULL JSON output</strong> (entire block)</li>
-</ol>
-<p><strong>⚠️ Do NOT modify it.</strong></p>
-
-<hr>
+<h2>How to Find these Secrets</h2>
 
 <h2>A2️⃣ Create IAM User for THIS PROJECT</h2>
 
@@ -91,8 +50,10 @@
   <li>Create for AWS CLI</li>
   <li>Access ID and Secret Access Key → <strong>download .csv</strong></li>
 </ol>
-<p><strong>📌 Save them NOW (You won't see secret again)</strong></p>
-<p>These are what you will put into GitHub Secrets.</p>
+<ul>
+  <li><strong>Access ID:</strong> <code>AWS_ACCESS_KEY_ID</code></li>
+  <li><strong>Secret Access Key:</strong> <code>AWS_SECRET_ACCESS_KEY</code></li>
+</ul>
 
 <h3>What is AWS_ACCOUNT_ID & How to Verify CLI:</h3>
 <pre><code>aws sts get-caller-identity
@@ -113,8 +74,8 @@
   <li><strong>Create two repositories:</strong></li>
 </ol>
 <ul>
-  <li><strong>Repository 1</strong><br>Name: <code>backend</code></li>
-  <li><strong>Repository 2</strong><br>Name: <code>frontend</code></li>
+  <li><strong>Repository 1</strong><br><code>backend</code></li>
+  <li><strong>Repository 2</strong><br><code>frontend</code></li>
 </ul>
 <p><strong>Done ✅</strong></p>
 
@@ -126,7 +87,7 @@
 
 <hr>
 
-<h2>B2️⃣ Create Azure Container Registry (ACR)</h2>
+<h2>1️⃣ Create Azure Container Registry (ACR)</h2>
 <ol>
   <li>Azure Portal → Search Container Registries → Create</li>
 </ol>
@@ -155,7 +116,44 @@
 
 <hr>
 
-<h2>🟢 OPTION 1 (RECOMMENDED & FASTEST): Create NEW PAT</h2>
+<h2>2️⃣ Azure Secrets (ACR)</h2>
+
+<pre><code>az ad sp create-for-rbac \
+  --name devops-assignment-sp \
+  --role acrpush \
+  --scopes /subscriptions/&lt;SUBSCRIPTION_ID&gt;/resourceGroups/devops-assignment-rg/providers/Microsoft.ContainerRegistry/registries/devopsassignmentacr \
+  --sdk-auth
+</code></pre>
+
+<p><strong>⚠️ Replace <code>&lt;SUBSCRIPTION_ID&gt;</code> properly.</strong></p>
+
+<p><strong>Output will look like:</strong></p>
+<pre>{
+  "clientId": "xxxx",
+  "clientSecret": "yyyy",
+  "subscriptionId": "zzzz",
+  "tenantId": "aaaa",
+  "activeDirectoryEndpointUrl": "...",
+  "resourceManagerEndpointUrl": "...",
+  "activeDirectoryGraphResourceId": "...",
+  "sqlManagementEndpointUrl": "...",
+  "galleryEndpointUrl": "...",
+  "managementEndpointUrl": "..."
+}</pre>
+
+<h3>STEP 2️⃣ Add this as ONE GitHub Secret</h3>
+<ol>
+  <li>GitHub → Settings → Secrets → Actions → New repository secret</li>
+  <li><strong>Name:</strong> <code>AZURE_CREDENTIALS</code></li>
+  <li><strong>Value:</strong> 👉 paste the <strong>FULL JSON output</strong> (entire block)</li>
+</ol>
+<p><strong>⚠️ Do NOT modify it.</strong></p>
+
+<hr>
+
+<h2>🟢 GitHub Action Workflow Control</h2>
+
+<h3>Create NEW PAT</h3>
 
 <h3>Step 1️⃣ Go to GitHub Tokens</h3>
 <p><strong>👉 <a href="https://github.com/settings/tokens" target="_blank">https://github.com/settings/tokens</a></strong></p>
