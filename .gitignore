@@ -1,5 +1,19 @@
 node_modules# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# .gitignore
+# Terraform
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+.terraformrc
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+
+
 # dependencies
 frontend/node_modules
 /.pnp
