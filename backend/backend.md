@@ -11,6 +11,7 @@
 <h2>Run Locally</h2>
 <pre><code>cd backend
 pip install -r requirements.txt
+pip install pytest
 uvicorn app.main:app --reload --port 8000</code></pre>
 
 <h2>Running Backend Unit Tests</h2>
