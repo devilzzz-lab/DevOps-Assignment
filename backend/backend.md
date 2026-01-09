@@ -35,6 +35,21 @@
   <li>Message endpoint returns valid response.</li>
 </ul>
 
+
+<h2>Running Backend Using Docker</h2>
+<p>The backend is containerized using Docker.</p>
+<p><strong>Container features:</strong></p>
+<ul>
+  <li>Multi-stage build</li>
+  <li>Non-root user execution</li>
+  <li>Optimized image size</li>
+</ul>
+<p>The container exposes port <strong>8000</strong>.</p>
+
+<p><code>cd backend/Dockerfile </code></p>
+
+<p>Run<code>docker run -p 8000:8000 backend-api</code></p>
+
 <h2>Backend Endpoints</h2>
 
 <h3>Health Check</h3>
@@ -56,16 +71,6 @@
     <pre><code>NEXT_PUBLIC_API_URL=https://your-backend-url.com</code></pre>
   </li>
 </ol>
-
-<h2>Running Backend Using Docker</h2>
-<p>The backend is containerized using Docker.</p>
-<p><strong>Container features:</strong></p>
-<ul>
-  <li>Multi-stage build</li>
-  <li>Non-root user execution</li>
-  <li>Optimized image size</li>
-</ul>
-<p>The container exposes port <strong>8000</strong>.</p>
 
 <h2>Security Practices</h2>
 <ul>
