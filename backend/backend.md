@@ -39,10 +39,19 @@ The backend provides REST APIs consumed by the frontend application.
 </ul>
 
 <h2>Environment Variables</h2>
-<ul>
-  <li><code>APP_MESSAGE</code>: Custom message returned by the message endpoint.</li>
-  <li>If not set, a default message is returned.</li>
-</ul>
+
+<p>Configure the backend URL in your frontend:</p>
+
+<ol>
+  <li>Create a <code>.env.local</code> file in the <code>frontend</code> directory</li>
+  <li>Add the following variable:
+    <pre><code>NEXT_PUBLIC_API_URL=http://localhost:8000</code></pre>
+  </li>
+  <li>For production, update the URL:
+    <pre><code>NEXT_PUBLIC_API_URL=https://your-backend-url.com</code></pre>
+  </li>
+</ol>
+
 
 <h2>Running Backend Locally (Without Docker)</h2>
 <p><strong>Steps:</strong></p>
