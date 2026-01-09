@@ -10,5 +10,3 @@ variable "backend_image" {
   description = "Backend image URI"
   type        = string
 }
-
-variable "frontend_image" {}
