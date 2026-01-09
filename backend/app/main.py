@@ -23,5 +23,5 @@ async def health_check():
 
 @app.get("/api/message")
 async def get_message():
-    return {"message": "CD Test successful – deployed from main branch"}
+    return {"message": "Deployed from commit $GITHUB_SHA"}
  
