@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Backend Service – FastAPI</title>
 </head>
 <body>
 
@@ -56,10 +55,12 @@
 
 <h3>Health Check</h3>
 <pre><code>curl http://localhost:8000/api/health</code></pre>
+<p>Output:</p>
 <p>{"message": "You've successfully integrated the backend!"}</p>
 
 <h3>Message Endpoint</h3>
 <pre><code>curl http://localhost:8000/api/message</code></pre>
+<p>Output:</p>
 <p>{"status": "healthy", "message": "Backend is running successfully"}</p>
 
 
