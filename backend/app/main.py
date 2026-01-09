@@ -23,5 +23,6 @@ async def health_check():
 
 @app.get("/api/message")
 async def get_message():
-    return {"message": "Deployed via terraform"}
+    return {"message": "develop build – should NOT deploy"}
+
  
