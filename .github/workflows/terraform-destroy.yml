@@ -29,5 +29,4 @@ jobs:
         working-directory: terraform/aws
         run: |
           terraform destroy -auto-approve \
-            -var="backend_image=dummy" \
-            -var="frontend_image=dummy"
+            -var="backend_image=dummy"
