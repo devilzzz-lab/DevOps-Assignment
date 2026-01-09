@@ -3,15 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backend Service – FastAPI</title>
 </head>
 <body>
 
 <h1>Backend Service – FastAPI</h1>
-
-<p>
-This directory contains the backend service for the DevOps Assignment project.
-The backend provides REST APIs consumed by the frontend application.
-</p>
 
 <h2>Backend Overview</h2>
 <ul>
@@ -22,21 +18,30 @@ The backend provides REST APIs consumed by the frontend application.
   <li>Dockerized using best practices</li>
 </ul>
 
+<h2>Running Backend Unit Tests</h2>
+<p><strong>Steps:</strong></p>
+<ol>
+  <li>Navigate to the backend directory.</li>
+  <li>Install dependencies from <code>requirements.txt</code>.</li>
+  <li>Install <code>pip install pytest</code>.</li>
+  <li>Run tests using:
+    <pre><code>python3 -m pytest tests/test_main.py</code></pre>
+  </li>
+</ol>
+
+<p>Unit tests validate backend API endpoints. Tests ensure:</p>
+<ul>
+  <li>Health endpoint returns expected status.</li>
+  <li>Message endpoint returns valid response.</li>
+</ul>
+
 <h2>Backend Endpoints</h2>
 
 <h3>Health Check</h3>
-<ul>
-  <li><strong>Method:</strong> GET</li>
-  <li><strong>Endpoint:</strong> <code>/api/health</code></li>
-  <li><strong>Description:</strong> Returns backend service status.</li>
-</ul>
+<pre><code>curl http://localhost:8000/api/health</code></pre>
 
 <h3>Message Endpoint</h3>
-<ul>
-  <li><strong>Method:</strong> GET</li>
-  <li><strong>Endpoint:</strong> <code>/api/message</code></li>
-  <li><strong>Description:</strong> Returns a simple integration message.</li>
-</ul>
+<pre><code>curl http://localhost:8000/api/message</code></pre>
 
 <h2>Environment Variables</h2>
 
@@ -51,26 +56,6 @@ The backend provides REST APIs consumed by the frontend application.
     <pre><code>NEXT_PUBLIC_API_URL=https://your-backend-url.com</code></pre>
   </li>
 </ol>
-
-
-<h2>Running Backend Locally (Without Docker)</h2>
-<p><strong>Steps:</strong></p>
-<ol>
-  <li>Navigate to the backend directory.</li>
-  <li>Install dependencies from <code>requirements.txt</code>.</li>
-  <li>Start the FastAPI server using Uvicorn.</li>
-</ol>
-<p>
-The backend runs on port <strong>8000</strong> and is accessible at:
-<a href="http://localhost:8000" target="_blank">http://localhost:8000</a>
-</p>
-
-<h2>Running Backend Unit Tests</h2>
-<p>Unit tests validate backend API endpoints. Tests ensure:</p>
-<ul>
-  <li>Health endpoint returns expected status.</li>
-  <li>Message endpoint returns valid response.</li>
-</ul>
 
 <h2>Running Backend Using Docker</h2>
 <p>The backend is containerized using Docker.</p>
