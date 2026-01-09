@@ -45,7 +45,6 @@ npm test
 <h2>Frontend Status</h2>
 <p>
 Frontend application structure is ready.
-Testing and Dockerization are in progress.
 </p>
 
 </body>
