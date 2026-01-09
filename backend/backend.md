@@ -15,15 +15,8 @@ pip install pytest
 uvicorn app.main:app --reload --port 8000</code></pre>
 
 <h2>Running Backend Unit Tests</h2>
-<p><strong>Steps:</strong></p>
-<ol>
-  <li>Navigate to the backend directory</li>
-  <li>Install dependencies from <code>requirements.txt</code></li>
-  <li>Install pytest: <code>pip install pytest</code></li>
-  <li>Run tests using:
-    <pre><code>python3 -m pytest tests/test_main.py</code></pre>
-  </li>
-</ol>
+<pre><code>cd backend
+python3 -m pytest tests/test_main.py</code></pre>
 
 <h2>Running Backend Using Docker</h2>
 <p>The backend is containerized using Docker.</p>
