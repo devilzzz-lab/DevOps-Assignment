@@ -16,10 +16,10 @@
 </ul>
 
 <p>
-This project demonstrates end-to-end DevOps practices by designing, containerizing, testing, and deploying a two-tier web application across multiple cloud platforms using automated CI/CD pipelines and Infrastructure as Code. [conversation_history:1]
+This project demonstrates end-to-end DevOps practices by designing, containerizing, testing, and deploying a two-tier web application across multiple cloud platforms using automated CI/CD pipelines and Infrastructure as Code. 
 </p>
 <p>
-The project follows professional Git workflows, container best practices, cloud-native architecture, and production-grade observability and security practices. [conversation_history:1]
+The project follows professional Git workflows, container best practices, cloud-native architecture, and production-grade observability and security practices. 
 </p>
 
 <h2>Project Overview</h2>
@@ -49,7 +49,7 @@ The project follows professional Git workflows, container best practices, cloud-
 
 <h3>🟩 PHASE 1 – Version Control &amp; Git Workflow (Completed)</h3>
 <h4>Objective</h4>
-<p>Establish a professional Git workflow aligned with real-world DevOps practices. [conversation_history:1]</p>
+<p>Establish a professional Git workflow aligned with real-world DevOps practices.</p>
 
 <h4>Key activities</h4>
 <ul>
@@ -63,11 +63,11 @@ The project follows professional Git workflows, container best practices, cloud-
 </ul>
 
 <h4>Deliverable</h4>
-<p>Version-controlled repository with clean commit history and Pull Request workflow. [conversation_history:1]</p>
+<p>Version-controlled repository with clean commit history and Pull Request workflow.</p>
 
 <h3>🟦 PHASE 2 – Backend API Implementation &amp; Dockerization (Completed)</h3>
 <h4>Objective</h4>
-<p>Develop a production-ready backend service with testing and containerization. [conversation_history:1]</p>
+<p>Develop a production-ready backend service with testing and containerization.</p>
 
 <h4>Key activities</h4>
 <ul>
@@ -80,11 +80,11 @@ The project follows professional Git workflows, container best practices, cloud-
 </ul>
 
 <h4>Deliverable</h4>
-<p>Tested and Dockerized FastAPI backend ready for CI/CD and cloud deployment. [conversation_history:1]</p>
+<p>Tested and Dockerized FastAPI backend ready for CI/CD and cloud deployment.</p>
 
 <h3>🟨 PHASE 3 – Frontend Testing &amp; Dockerization (In Progress)</h3>
 <h4>Objective</h4>
-<p>Containerize frontend application and validate backend integration. [conversation_history:1]</p>
+<p>Containerize frontend application and validate backend integration.</p>
 
 <h4>Planned activities</h4>
 <ul>
@@ -95,11 +95,11 @@ The project follows professional Git workflows, container best practices, cloud-
 </ul>
 
 <h4>Deliverable</h4>
-<p>Production-ready frontend container with automated testing. [conversation_history:1]</p>
+<p>Production-ready frontend container with automated testing.</p>
 
 <h3>🟧 PHASE 4 – CI/CD Pipeline Automation (Planned)</h3>
 <h4>Objective</h4>
-<p>Automate build, test, containerization, and deployment workflows. [conversation_history:1]</p>
+<p>Automate build, test, containerization, and deployment workflows.</p>
 
 <h4>Planned activities</h4>
 <ul>
@@ -111,11 +111,11 @@ The project follows professional Git workflows, container best practices, cloud-
 </ul>
 
 <h4>Deliverable</h4>
-<p>Fully automated CI/CD pipeline with zero manual steps. [conversation_history:1]</p>
+<p>Fully automated CI/CD pipeline with zero manual steps./p>
 
 <h3>🟥 PHASE 5 – Infrastructure as Code (Multi-Cloud) (Planned)</h3>
 <h4>Objective</h4>
-<p>Provision cloud infrastructure using Terraform. [conversation_history:1]</p>
+<p>Provision cloud infrastructure using Terraform.</p>
 
 <h4>Planned activities</h4>
 <ul>
@@ -127,11 +127,11 @@ The project follows professional Git workflows, container best practices, cloud-
 </ul>
 
 <h4>Deliverable</h4>
-<p>Reusable Terraform-based infrastructure for AWS and Azure. [conversation_history:1]</p>
+<p>Reusable Terraform-based infrastructure for AWS and Azure.</p>
 
 <h3>🟪 PHASE 6 – Monitoring, Alerting &amp; Observability (Planned)</h3>
 <h4>Objective</h4>
-<p>Implement monitoring and alerting for applications and infrastructure. [conversation_history:1]</p>
+<p>Implement monitoring and alerting for applications and infrastructure.</p>
 
 <h4>Planned activities</h4>
 <ul>
@@ -142,11 +142,11 @@ The project follows professional Git workflows, container best practices, cloud-
 </ul>
 
 <h4>Deliverable</h4>
-<p>Production-grade monitoring and alerting setup. [conversation_history:1]</p>
+<p>Production-grade monitoring and alerting setup.</p>
 
 <h3>🟫 PHASE 7 – Load Balancing &amp; Resiliency (Planned)</h3>
 <h4>Objective</h4>
-<p>Validate high availability and fault tolerance. [conversation_history:1]</p>
+<p>Validate high availability and fault tolerance./p>
 
 <h4>Planned activities</h4>
 <ul>
@@ -157,7 +157,7 @@ The project follows professional Git workflows, container best practices, cloud-
 </ul>
 
 <h4>Deliverable</h4>
-<p>Highly available and resilient application deployment. [conversation_history:1]</p>
+<p>Highly available and resilient application deployment.</p>
 
 <h2>Technical Stack</h2>
 <ul>

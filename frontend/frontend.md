@@ -9,8 +9,8 @@
 <h1>Frontend Application – Next.js</h1>
 
 <p>
-This directory contains the frontend application for the DevOps Assignment project. [conversation_history:1]
-The frontend communicates with the backend via REST APIs. [conversation_history:1]
+This directory contains the frontend application for the DevOps Assignment project.
+The frontend communicates with the backend via REST APIs.
 </p>
 
 <h2>Frontend Overview</h2>
@@ -40,7 +40,7 @@ The frontend runs on port <strong>3000</strong> and is accessible at:
 </p>
 
 <h2>Running Frontend Tests</h2>
-<p>Frontend tests validate UI rendering and backend integration behavior. [conversation_history:1]</p>
+<p>Frontend tests validate UI rendering and backend integration behavior.</p>
 <p>Tests ensure:</p>
 <ul>
   <li>Application renders correctly</li>
@@ -48,7 +48,7 @@ The frontend runs on port <strong>3000</strong> and is accessible at:
 </ul>
 
 <h2>Running Frontend Using Docker</h2>
-<p>The frontend is containerized using Docker. [conversation_history:1]</p>
+<p>The frontend is containerized using Docker.</p>
 <p><strong>Container features:</strong></p>
 <ul>
   <li>Multi-stage build</li>
@@ -60,7 +60,7 @@ The frontend runs on port <strong>3000</strong> and is accessible at:
 <h2>Frontend Status</h2>
 <p>
 Frontend application structure is ready.
-Testing and Dockerization are in progress. [conversation_history:1]
+Testing and Dockerization are in progress.
 </p>
 
 </body>
