@@ -111,7 +111,7 @@ The project follows professional Git workflows, container best practices, cloud-
 </ul>
 
 <h4>Deliverable</h4>
-<p>Fully automated CI/CD pipeline with zero manual steps./p>
+<p>Fully automated CI/CD pipeline with zero manual steps.</p>
 
 <h3>🟥 PHASE 5 – Infrastructure as Code (Multi-Cloud) (Planned)</h3>
 <h4>Objective</h4>
@@ -146,7 +146,7 @@ The project follows professional Git workflows, container best practices, cloud-
 
 <h3>🟫 PHASE 7 – Load Balancing &amp; Resiliency (Planned)</h3>
 <h4>Objective</h4>
-<p>Validate high availability and fault tolerance./p>
+<p>Validate high availability and fault tolerance.</p>
 
 <h4>Planned activities</h4>
 <ul>
@@ -178,6 +178,106 @@ The project follows professional Git workflows, container best practices, cloud-
   <li>Backend service documentation: backend README</li>
   <li>Frontend application documentation: frontend README</li>
 </ul>
+
+<hr>
+
+<h2>📦 Deliverables</h2>
+
+<h3>Mandatory</h3>
+<p>GitHub repository with:</p>
+<ul>
+  <li>Source code</li>
+  <li>Dockerfiles</li>
+  <li>Terraform configs</li>
+  <li>CI/CD workflows</li>
+  <li>README.md</li>
+</ul>
+
+<h3>Hosted URLs</h3>
+<ul>
+  <li>Frontend &amp; backend for each cloud</li>
+</ul>
+
+<h3>Demo Video (5–8 minutes)</h3>
+<p>Covering:</p>
+<ul>
+  <li>Architecture</li>
+  <li>Git workflow</li>
+  <li>Dockerization</li>
+  <li>CI/CD</li>
+  <li>Terraform</li>
+  <li>Monitoring &amp; alerts</li>
+  <li>Security</li>
+  <li>Load balancing test</li>
+</ul>
+
+<h3>Evidence</h3>
+<ul>
+  <li>CI/CD logs</li>
+  <li>Terraform apply output or state</li>
+  <li>Monitoring dashboards screenshots</li>
+  <li>Secret retrieval proof (non-sensitive)</li>
+</ul>
+
+<h2>✅ Submission Checklist</h2>
+<ul>
+  <li>README.md with clear instructions</li>
+  <li>Backend &amp; frontend tests passing</li>
+  <li>Docker images built &amp; pushed</li>
+  <li>Deployed on at least 2 cloud platforms</li>
+  <li>Terraform-only provisioning</li>
+  <li>Automated CI/CD deployments</li>
+  <li>Monitoring dashboards &amp; alerts</li>
+  <li>Secure secrets &amp; IAM roles</li>
+  <li>Demo video included</li>
+</ul>
+
+<h2>🏆 Grading Rubric</h2>
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Criteria</th>
+      <th>Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Version Control &amp; Documentation</td>
+      <td>10%</td>
+    </tr>
+    <tr>
+      <td>Dockerization</td>
+      <td>15%</td>
+    </tr>
+    <tr>
+      <td>CI/CD Automation</td>
+      <td>20%</td>
+    </tr>
+    <tr>
+      <td>Multi-Cloud Terraform (2 Clouds)</td>
+      <td>25%</td>
+    </tr>
+    <tr>
+      <td>Monitoring &amp; Alerting</td>
+      <td>10%</td>
+    </tr>
+    <tr>
+      <td>Security &amp; IAM</td>
+      <td>5%</td>
+    </tr>
+    <tr>
+      <td>Load Balancing &amp; Resiliency</td>
+      <td>10%</td>
+    </tr>
+    <tr>
+      <td>Demo Video &amp; Presentation</td>
+      <td>5%</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>📅 Deadline</h2>
+<p><strong>3 days / 11-Jan-2026</strong></p>
 
 </body>
 </html>
