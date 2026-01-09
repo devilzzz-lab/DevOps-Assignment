@@ -1,0 +1,115 @@
+name: CI-CD Pipeline
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+
+jobs:
+  backend-and-frontend-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ---------------- BACKEND ----------------
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          pip install -r requirements.txt
+
+      - name: Run backend tests
+        run: |
+          cd backend
+          pytest
+
+      # ---------------- FRONTEND ----------------
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Run frontend tests
+        run: |
+          cd frontend
+          npm test
+
+      # ---------------- DOCKER BUILD ----------------
+      - name: Build backend Docker image
+        run: |
+          docker build -t backend:${{ github.sha }} ./backend
+
+      - name: Build frontend Docker image
+        run: |
+          docker build -t frontend:${{ github.sha }} ./frontend
+
+      # ---------------- AWS ECR PUSH ----------------
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        run: |
+          aws ecr get-login-password --region $AWS_REGION \
+          | docker login --username AWS \
+          --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+
+      - name: Tag & Push backend image to ECR
+        run: |
+          docker tag backend:${{ github.sha }} \
+          ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/backend:${{ github.sha }}
+
+          docker push \
+          ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/backend:${{ github.sha }}
+
+      - name: Tag & Push frontend image to ECR
+        run: |
+          docker tag frontend:${{ github.sha }} \
+          ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }}
+
+          docker push \
+          ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }}
+
+      # ---------------- AZURE ACR PUSH ----------------
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+
+      - name: Login to Azure ACR
+        run: |
+          az acr login --name ${{ secrets.AZURE_ACR_NAME }}
+
+      - name: Tag & Push backend image to ACR
+        run: |
+          docker tag backend:${{ github.sha }} \
+          ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/backend:${{ github.sha }}
+
+          docker push \
+          ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/backend:${{ github.sha }}
+
+      - name: Tag & Push frontend image to ACR
+        run: |
+          docker tag frontend:${{ github.sha }} \
+          ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}
+
+          docker push \
+          ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}
