@@ -25,10 +25,10 @@ python3 -m pytest tests/test_main.py</code></pre>
 <pre><code>cd backend</code></pre>
 
 <p><strong>Build the Docker image:</strong></p>
-<pre><code>docker build -t backend-api .</code></pre>
+<pre><code>docker build -t backend-ui .</code></pre>
 
 <p><strong>Run the container:</strong></p>
-<pre><code>docker run -p 8000:8000 backend-api</code></pre>
+<pre><code>docker run -p 8000:8000 backend-ui</code></pre>
 
 <h2>Backend Endpoints</h2>
 

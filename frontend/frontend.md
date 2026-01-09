@@ -21,13 +21,26 @@ npm test
 
 <h2>Running Frontend Using Docker</h2>
 <p>The frontend is containerized using Docker.</p>
-<p><strong>Container features:</strong></p>
-<ul>
-  <li>Multi-stage build</li>
-  <li>Production-ready Next.js build</li>
-  <li>Environment-based configuration</li>
-</ul>
-<p>The container exposes port <strong>3000</strong>.</p>
+
+<p><strong>Navigate to frontend directory:</strong></p>
+<pre><code>cd frontend</code></pre>
+
+<p><strong>Build the Docker image:</strong></p>
+<pre><code>docker build -t frontend-ui .</code></pre>
+
+<p><strong>Run the container:</strong></p>
+<pre><code>docker run -p 3000:3000 frontend-ui</code></pre>
+
+<h2>Running Docker compose (Optional)</h2>
+<p>The frontend and backend is containerized using Docker.</p>
+
+<p><strong>Navigate to root directory:</strong></p>
+<pre><code>cd ..</code></pre>
+
+<p><strong>Run:</strong></p>
+<pre><code>docker compose up --build
+</code></pre>
+
 
 <h2>Frontend Status</h2>
 <p>
