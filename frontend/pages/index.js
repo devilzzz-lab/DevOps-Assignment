@@ -9,19 +9,23 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // First check if backend is healthy
-        const healthCheck = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/health`);
+        // ✅ FIXED: Direct ALB URL (same domain, no CORS!)
+        const API_BASE = window.location.origin;  // http://devops-alb-xxx.us-east-1.elb.amazonaws.com
+        
+        // Check backend health
+        const healthCheck = await axios.get(`${API_BASE}/api/health`);
         
         if (healthCheck.data.status === 'healthy') {
-          setStatus('Backend is connected!');
-          // Then fetch the message
-          const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/message`);
+          setStatus('✅ Backend connected!');
+          
+          // Fetch message
+          const response = await axios.get(`${API_BASE}/api/message`);
           setMessage(response.data.message);
         }
       } catch (error) {
-        setMessage('Failed to connect to the backend');
-        setStatus('Backend connection failed');
-        console.error('Error:', error);
+        setStatus('❌ Backend connection failed');
+        setMessage('Backend API not responding');
+        console.error('API Error:', error.response?.data || error.message);
       }
     };
 
@@ -32,7 +36,7 @@ export default function Home() {
     <div className="container">
       <Head>
         <title>DevOps Assignment</title>
-        <meta name="description" content="DevOps Assignment with FastAPI and Next.js" />
+        <meta name="description" content="Full-stack DevOps Assignment" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -46,63 +50,20 @@ export default function Home() {
           <p>{message}</p>
         </div>
         <div className="info">
-          <p>Backend URL: {process.env.NEXT_PUBLIC_API_URL}</p>
+          <p>API Base: <code>{window.location.origin}</code></p>
+          <p>ALB: devops-alb-1909194751.us-east-1.elb.amazonaws.com</p>
         </div>
       </main>
 
       <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          max-width: 800px;
-          margin: 0 auto;
-          text-align: center;
-        }
-
-        h1 {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 3rem;
-          margin-bottom: 2rem;
-        }
-
-        .message-box {
-          margin: 2rem 0;
-          padding: 1.5rem;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          width: 100%;
-          max-width: 600px;
-        }
-
-        .success {
-          color: #0070f3;
-          font-weight: bold;
-        }
-
-        .error {
-          color: #f00;
-          font-weight: bold;
-        }
-
-        .info {
-          margin-top: 2rem;
-          font-size: 0.9rem;
-          color: #666;
-        }
+        .container { min-height: 100vh; padding: 0 0.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        main { padding: 5rem 0; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 800px; margin: 0 auto; text-align: center; }
+        h1 { margin: 0; line-height: 1.15; font-size: 3rem; margin-bottom: 2rem; }
+        .message-box { margin: 2rem 0; padding: 1.5rem; border: 1px solid #eaeaea; border-radius: 10px; width: 100%; max-width: 600px; background: #f8f9fa; }
+        .success { color: #10b981; font-weight: bold; }
+        .error { color: #ef4444; font-weight: bold; }
+        .info { margin-top: 2rem; font-size: 0.9rem; color: #666; }
+        code { background: #e5e7eb; padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; }
       `}</style>
     </div>
   );
