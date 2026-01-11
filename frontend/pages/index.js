@@ -5,22 +5,32 @@ import axios from 'axios';
 export default function Home() {
   const [status, setStatus] = useState('Checking backend...');
   const [message, setMessage] = useState('Loading...');
-  const [apiBase, setApiBase] = useState('N/A');
+  const [apiBase, setApiBase] = useState('');
 
   useEffect(() => {
-    const API_BASE = process.env.NEXT_PUBLIC_API_URL;
+    let API_BASE = '';
 
-    // Show loading first (important for tests)
-    setApiBase(API_BASE || 'NOT SET');
+    if (typeof window !== 'undefined') {
+      const host = window.location.hostname;
 
-    if (!API_BASE) {
-      // Delay state change so "Loading..." exists initially
-      setTimeout(() => {
-        setStatus('❌ API base not configured');
-        setMessage('NEXT_PUBLIC_API_URL is missing');
-      }, 0);
-      return;
+      // 🟢 LOCAL
+      if (host === 'localhost') {
+        API_BASE = 'http://localhost:8000';
+      }
+
+      // 🟠 AWS (ALB handles /api)
+      else if (host.includes('amazonaws.com')) {
+        API_BASE = '';
+      }
+
+      // 🔵 AZURE (direct backend call)
+      else if (host.includes('azurecontainerapps.io')) {
+        API_BASE =
+          'https://backend-app.salmonpebble-0b8cecd6.eastus.azurecontainerapps.io';
+      }
     }
+
+    setApiBase(API_BASE || '/api');
 
     const checkBackend = async () => {
       try {
