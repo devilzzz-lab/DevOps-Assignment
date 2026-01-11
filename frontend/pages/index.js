@@ -8,26 +8,26 @@ export default function Home() {
   const [apiBase, setApiBase] = useState('N/A');
 
   useEffect(() => {
-    // 🔑 Single source of truth (works for Local | AWS | Azure)
     const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 
+    // Show loading first (important for tests)
     setApiBase(API_BASE || 'NOT SET');
 
-    const checkBackend = async () => {
-      if (!API_BASE) {
+    if (!API_BASE) {
+      // Delay state change so "Loading..." exists initially
+      setTimeout(() => {
         setStatus('❌ API base not configured');
         setMessage('NEXT_PUBLIC_API_BASE is missing');
-        return;
-      }
+      }, 0);
+      return;
+    }
 
+    const checkBackend = async () => {
       try {
-        // Health check
         const health = await axios.get(`${API_BASE}/api/health`);
 
         if (health.data?.status === 'healthy') {
           setStatus('✅ Backend connected');
-
-          // Sample message API
           const res = await axios.get(`${API_BASE}/api/message`);
           setMessage(res.data?.message || 'No message from backend');
         } else {
@@ -37,7 +37,6 @@ export default function Home() {
       } catch (err) {
         setStatus('❌ Backend connection failed');
         setMessage('Backend API not responding');
-        console.error('Backend error:', err.message);
       }
     };
 
@@ -48,11 +47,10 @@ export default function Home() {
     <div className="container">
       <Head>
         <title>DevOps Assignment</title>
-        <meta name="description" content="Multi-Environment DevOps App" />
       </Head>
 
       <main>
-        <h1>DevOps Assignment</h1>
+        <h1>Sriram DevOps Assignment</h1>
 
         <p>
           <strong>Status:</strong>{' '}
@@ -61,59 +59,69 @@ export default function Home() {
           </span>
         </p>
 
-        <div className="box">
-          <h3>Backend Message</h3>
+        <div className="message-box">
+          <h2>Backend Message:</h2>
           <p>{message}</p>
         </div>
 
         <p className="info">
           API Base: <code>{apiBase}</code>
         </p>
-
-        <p className="note">
-          Environment selected via <code>NEXT_PUBLIC_API_BASE</code>
-        </p>
       </main>
 
       <style jsx>{`
-        .container {
-          min-height: 100vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+        .container { 
+          min-height: 100vh; 
+          padding: 0 0.5rem; 
+          display: flex; 
+          flex-direction: column; 
+          justify-content: center; 
+          align-items: center; 
         }
-        main {
-          text-align: center;
-          max-width: 600px;
+        main { 
+          padding: 5rem 0; 
+          flex: 1; 
+          display: flex; 
+          flex-direction: column; 
+          justify-content: center; 
+          align-items: center; 
+          max-width: 800px; 
+          margin: 0 auto; 
+          text-align: center; 
         }
-        .box {
-          margin: 20px 0;
-          padding: 16px;
-          border: 1px solid #e5e7eb;
-          border-radius: 8px;
-          background: #f9fafb;
+        h1 { 
+          margin: 0; 
+          line-height: 1.15; 
+          font-size: 3rem; 
+          margin-bottom: 2rem; 
         }
-        .success {
-          color: #16a34a;
-          font-weight: bold;
+        .message-box { 
+          margin: 2rem 0; 
+          padding: 1.5rem; 
+          border: 1px solid #eaeaea; 
+          border-radius: 10px; 
+          width: 100%; 
+          max-width: 600px; 
+          background: #f8f9fa; 
         }
-        .error {
-          color: #dc2626;
-          font-weight: bold;
+        .success { 
+          color: #10b981; 
+          font-weight: bold; 
         }
-        .info {
-          margin-top: 12px;
-          font-size: 0.9rem;
-          color: #374151;
+        .error { 
+          color: #ef4444; 
+          font-weight: bold; 
         }
-        .note {
-          font-size: 0.8rem;
-          color: #6b7280;
+        .info { 
+          margin-top: 2rem; 
+          font-size: 0.9rem; 
+          color: #666; 
         }
-        code {
-          background: #e5e7eb;
-          padding: 2px 6px;
-          border-radius: 4px;
+        code { 
+          background: #e5e7eb; 
+          padding: 0.2rem 0.4rem; 
+          border-radius: 4px; 
+          font-family: monospace; 
         }
       `}</style>
     </div>
