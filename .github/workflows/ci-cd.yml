@@ -112,6 +112,8 @@ jobs:
           docker push \
           ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}
 
+  # ---------------- AWS DEPLOY ----------------
+
   deploy-aws:
     if: github.ref == 'refs/heads/main'
     needs: backend-and-frontend-ci
@@ -140,7 +142,8 @@ jobs:
       run: |
         terraform apply -auto-approve \
           -var="backend_image=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/backend:${{ github.sha }}"
-    
+
+  # ---------------- AZURE DEPLOY ----------------
   deploy-azure:
     if: github.ref == 'refs/heads/main'
     needs: backend-and-frontend-ci
