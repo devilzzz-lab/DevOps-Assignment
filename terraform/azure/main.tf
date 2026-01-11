@@ -108,7 +108,7 @@ resource "azurerm_container_app" "backend" {
   template {
     container {
       name   = "backend"
-      image  = var.backend_image
+      image = "${var.backend_image}" 
       cpu    = 0.5
       memory = "1Gi"
     }

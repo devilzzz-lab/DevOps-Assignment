@@ -145,7 +145,7 @@ jobs:
 
   deploy-aws:
     if: github.ref == 'refs/heads/main'
-    needs: backend-and-frontend-ci
+    needs: deploy-azure
     runs-on: ubuntu-latest
 
     steps:
