@@ -1,116 +1,119 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import axios from 'axios';
 
 export default function Home() {
+  const [status, setStatus] = useState('Checking backend...');
   const [message, setMessage] = useState('Loading...');
-  const [status, setStatus] = useState('');
   const [apiBase, setApiBase] = useState('N/A');
 
   useEffect(() => {
+    // 🔑 Single source of truth (works for Local | AWS | Azure)
     const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 
-    setApiBase(API_BASE);
+    setApiBase(API_BASE || 'NOT SET');
 
-    const fetchData = async () => {
+    const checkBackend = async () => {
+      if (!API_BASE) {
+        setStatus('❌ API base not configured');
+        setMessage('NEXT_PUBLIC_API_BASE is missing');
+        return;
+      }
+
       try {
-        const healthCheck = await axios.get(`${API_BASE}/api/health`);
+        // Health check
+        const health = await axios.get(`${API_BASE}/api/health`);
 
-        if (healthCheck.data.status === 'healthy') {
-          setStatus('✅ Backend connected!');
-          const response = await axios.get(`${API_BASE}/api/message`);
-          setMessage(response.data.message);
+        if (health.data?.status === 'healthy') {
+          setStatus('✅ Backend connected');
+
+          // Sample message API
+          const res = await axios.get(`${API_BASE}/api/message`);
+          setMessage(res.data?.message || 'No message from backend');
+        } else {
+          setStatus('⚠️ Backend unhealthy');
+          setMessage('Health check failed');
         }
-      } catch (error) {
+      } catch (err) {
         setStatus('❌ Backend connection failed');
         setMessage('Backend API not responding');
-        console.error('API Error:', error.response?.data || error.message);
+        console.error('Backend error:', err.message);
       }
     };
 
-    fetchData();
+    checkBackend();
   }, []);
 
   return (
     <div className="container">
       <Head>
         <title>DevOps Assignment</title>
-        <meta name="description" content="Full-stack DevOps Assignment" />
+        <meta name="description" content="Multi-Environment DevOps App" />
       </Head>
 
       <main>
         <h1>DevOps Assignment</h1>
 
         <p>
-          Status:{' '}
-          <span className={status.includes('connected') ? 'success' : 'error'}>
+          <strong>Status:</strong>{' '}
+          <span className={status.includes('✅') ? 'success' : 'error'}>
             {status}
           </span>
         </p>
 
-        <div className="message-box">
-          <h2>Backend Message:</h2>
+        <div className="box">
+          <h3>Backend Message</h3>
           <p>{message}</p>
         </div>
 
         <p className="info">
           API Base: <code>{apiBase}</code>
         </p>
+
+        <p className="note">
+          Environment selected via <code>NEXT_PUBLIC_API_BASE</code>
+        </p>
       </main>
 
       <style jsx>{`
-        .container { 
-          min-height: 100vh; 
-          padding: 0 0.5rem; 
-          display: flex; 
-          flex-direction: column; 
-          justify-content: center; 
-          align-items: center; 
+        .container {
+          min-height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
-        main { 
-          padding: 5rem 0; 
-          flex: 1; 
-          display: flex; 
-          flex-direction: column; 
-          justify-content: center; 
-          align-items: center; 
-          max-width: 800px; 
-          margin: 0 auto; 
-          text-align: center; 
+        main {
+          text-align: center;
+          max-width: 600px;
         }
-        h1 { 
-          margin: 0; 
-          line-height: 1.15; 
-          font-size: 3rem; 
-          margin-bottom: 2rem; 
+        .box {
+          margin: 20px 0;
+          padding: 16px;
+          border: 1px solid #e5e7eb;
+          border-radius: 8px;
+          background: #f9fafb;
         }
-        .message-box { 
-          margin: 2rem 0; 
-          padding: 1.5rem; 
-          border: 1px solid #eaeaea; 
-          border-radius: 10px; 
-          width: 100%; 
-          max-width: 600px; 
-          background: #f8f9fa; 
+        .success {
+          color: #16a34a;
+          font-weight: bold;
         }
-        .success { 
-          color: #10b981; 
-          font-weight: bold; 
+        .error {
+          color: #dc2626;
+          font-weight: bold;
         }
-        .error { 
-          color: #ef4444; 
-          font-weight: bold; 
+        .info {
+          margin-top: 12px;
+          font-size: 0.9rem;
+          color: #374151;
         }
-        .info { 
-          margin-top: 2rem; 
-          font-size: 0.9rem; 
-          color: #666; 
+        .note {
+          font-size: 0.8rem;
+          color: #6b7280;
         }
-        code { 
-          background: #e5e7eb; 
-          padding: 0.2rem 0.4rem; 
-          border-radius: 4px; 
-          font-family: monospace; 
+        code {
+          background: #e5e7eb;
+          padding: 2px 6px;
+          border-radius: 4px;
         }
       `}</style>
     </div>
