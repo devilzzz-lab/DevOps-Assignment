@@ -93,8 +93,9 @@ resource "azurerm_key_vault_access_policy" "mi_policy" {
 }
 
 
-resource "azurerm_container_app" "this" {
-  name                         = "devops-app"
+# ------------------ Backend Container App -----------------
+resource "azurerm_container_app" "backend" {
+  name                         = "backend-app"
   container_app_environment_id = azurerm_container_app_environment.this.id
   resource_group_name          = azurerm_resource_group.this.name
   revision_mode                = "Single"
@@ -106,8 +107,8 @@ resource "azurerm_container_app" "this" {
 
   template {
     container {
-      name   = "nginx"
-      image = var.backend_image
+      name   = "backend"
+      image  = var.backend_image
       cpu    = 0.5
       memory = "1Gi"
     }
@@ -115,7 +116,40 @@ resource "azurerm_container_app" "this" {
 
   ingress {
     external_enabled = true
-    target_port      = 80
+    target_port      = 8000
+
+    traffic_weight {
+      percentage      = 100
+      latest_revision = true
+    }
+  }
+}
+
+# ----------- Frontend Container App -----------
+resource "azurerm_container_app" "frontend" {
+  name                         = "frontend-app"
+  container_app_environment_id = azurerm_container_app_environment.this.id
+  resource_group_name          = azurerm_resource_group.this.name
+  revision_mode                = "Single"
+
+  template {
+    container {
+      name   = "frontend"
+      image  = var.frontend_image
+      cpu    = 0.5
+      memory = "1Gi"
+
+      env {
+        name  = "NEXT_PUBLIC_API_URL"
+        value = "https://${azurerm_container_app.backend.ingress[0].fqdn}"
+      }
+    }
+  }
+
+  ingress {
+    external_enabled = true
+    target_port      = 3000
+
     traffic_weight {
       percentage      = 100
       latest_revision = true

@@ -7,6 +7,11 @@ variable "project_name" {
 }
 
 variable "backend_image" {
-  description = "Backend image URI"
+  description = "Backend image from ECR"
+  type        = string
+}
+
+variable "frontend_image" {
+  description = "Frontend image from ECR"
   type        = string
 }

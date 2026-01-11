@@ -1,3 +1,3 @@
 resource "aws_secretsmanager_secret" "backend" {
-  name = "backend-secret-1"
+  name = "backend-secret-34"
 }
