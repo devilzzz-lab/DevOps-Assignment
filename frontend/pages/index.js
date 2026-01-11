@@ -8,9 +8,7 @@ export default function Home() {
   const [apiBase, setApiBase] = useState('N/A');
 
   useEffect(() => {
-    const API_BASE = process.env.NEXT_PUBLIC_API_BASE ||
-    (typeof window !== 'undefined' ? window.__API_BASE__ : undefined);
-
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL;
 
     // Show loading first (important for tests)
     setApiBase(API_BASE || 'NOT SET');
@@ -19,7 +17,7 @@ export default function Home() {
       // Delay state change so "Loading..." exists initially
       setTimeout(() => {
         setStatus('❌ API base not configured');
-        setMessage('NEXT_PUBLIC_API_BASE is missing');
+        setMessage('NEXT_PUBLIC_API_URL is missing');
       }, 0);
       return;
     }
