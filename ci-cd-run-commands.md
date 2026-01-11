@@ -39,7 +39,9 @@
   <li><code>AmazonECSFullAccess</code> (needed later)</li>
   <li><code>CloudWatchFullAccess</code> (needed later)</li>
 </ul>
-<p><strong>⚠️ Do NOT give AdministratorAccess (bad practice)</strong></p>
+<div class="warning">
+  <strong>⚠️ Do NOT give AdministratorAccess (bad practice)</strong>
+</div>
 <p>Click Next → Create user</p>
 
 <h3>Step 4: SAVE CREDENTIALS (CRITICAL)</h3>
@@ -55,8 +57,7 @@
 </ul>
 
 <h3>What is AWS_ACCOUNT_ID & How to Verify CLI:</h3>
-<pre><code>aws sts get-caller-identity
-</code></pre>
+<pre><code>aws sts get-caller-identity</code></pre>
 <p><strong>Output:</strong></p>
 <pre>{
   "Account": "123456789012"
@@ -174,10 +175,6 @@
   <li><strong>COPY it immediately</strong> (you won't see again)</li>
 </ol>
 
-<h3>Step 4️⃣ Update Git Authentication (ONE TIME)</h3>
-<pre><code>git config --global --unset credential.helper
-</code></pre>
-
 <hr>
 
 <h2>✅ FIX — DO THIS EXACTLY (2–3 minutes)</h2>
@@ -201,20 +198,132 @@
 </ol>
 
 <h3>Now push again:</h3>
-<pre><code>git push
-</code></pre>
+<pre><code>git push</code></pre>
 <p>When Git asks:</p>
 <ul>
   <li>Username: your GitHub username</li>
   <li>Password: 👉 paste the <strong>NEW PAT</strong> (not GitHub password)</li>
 </ul>
 
-<pre><code>git add .github/workflows/ci-cd.yml
-git commit -m "ci: build, test, and push images to ECR and ACR"
-git push
-</code></pre>
+<div class="success">
+  ✅ CORRECT FIX (BEST PRACTICE)
+</div>
+
+<h3>🔑 S3 Backend Naming Pattern (Industry Standard)</h3>
+<pre><code>aws sts get-caller-identity</code></pre>
+<p>Create bucket:</p>
+<pre><code>aws s3api create-bucket \
+  --bucket devops-assignment-1234567890-us-east-1-tf-state \
+  --region us-east-1</code></pre>
+
+<h3>🔐 ENABLE ENCRYPTION (MANDATORY)</h3>
+<pre><code>aws s3api put-bucket-encryption \
+  --bucket devops-assignment-123456789-us-east-1-tf-state \
+  --server-side-encryption-configuration '{
+    "Rules": [{
+      "ApplyServerSideEncryptionByDefault": {
+        "SSEAlgorithm": "AES256"
+      }
+    }]
+  }'</code></pre>
+
+<h3>🟢 CREATE DYNAMODB LOCK TABLE (ONE TIME)</h3>
+<pre><code>aws dynamodb create-table \
+  --table-name terraform-locks \
+  --attribute-definitions AttributeName=LockID,AttributeType=S \
+  --key-schema AttributeName=LockID,KeyType=HASH \
+  --billing-mode PAY_PER_REQUEST \
+  --region us-east-1</code></pre>
 
 <hr>
+
+<h2>🧪 TEST 1 — DEVELOP BRANCH (CI ONLY)</h2>
+<p><strong>🎯 Goal:</strong> CI runs, Images build & push, ❌ NO Terraform</p>
+
+<ol>
+  <li><strong>Switch to develop:</strong>
+    <pre><code>git checkout develop
+git pull origin develop</code></pre>
+  </li>
+  <li><strong>Change backend message:</strong>
+    <pre><code>@app.get("/api/message")
+async def get_message():
+    return {"message": "develop build – should NOT deploy"}</code></pre>
+  </li>
+  <li><strong>Commit & push:</strong>
+    <pre><code>git add backend
+git commit -m "test: develop branch CI only"
+git push origin develop</code></pre>
+  </li>
+</ol>
+
+<div class="success">
+  <strong>✅ PASS CONDITION:</strong><br>
+  ✔ CI ran<br>
+  ✔ No AWS infra created
+</div>
+
+<h2>🧪 TEST 2 — MAIN BRANCH (FULL DEPLOY)</h2>
+<p><strong>🎯 Goal:</strong> CI + Terraform apply + App reachable</p>
+
+<ol>
+  <li><strong>Switch to main:</strong>
+    <pre><code>git checkout main
+git pull origin main</code></pre>
+  </li>
+  <li><strong>Change backend message:</strong>
+    <pre><code>@app.get("/api/message")
+async def get_message():
+    return {"message": "main deploy v1"}</code></pre>
+  </li>
+  <li><strong>Commit & push:</strong>
+    <pre><code>git add backend
+git commit -m "deploy: main deploy v1"
+git push origin main</code></pre>
+  </li>
+</ol>
+
+<div class="success">
+  <strong>✅ PASS CONDITION:</strong><br>
+  ✔ Terraform ran from CI<br>
+  ✔ Infra created<br>
+  ✔ App reachable
+</div>
+
+<h2>🧪 TEST 3 — ZERO-DOWNTIME DEPLOY (MOST IMPORTANT)</h2>
+<p><strong>🎯 Goal:</strong> Rolling update, No downtime</p>
+
+<ol>
+  <li><strong>Change backend message:</strong>
+    <pre><code>@app.get("/api/message")
+async def get_message():
+    return {"message": "main deploy v2 – zero downtime"}</code></pre>
+  </li>
+  <li><strong>Commit & push:</strong>
+    <pre><code>git add backend
+git commit -m "deploy: main deploy v2"
+git push origin main</code></pre>
+  </li>
+  <li><strong>Live downtime test (DURING deployment):</strong>
+    <pre><code>while true; do
+  curl http://&lt;alb-dns&gt;/api/message
+  sleep 1
+done</code></pre>
+  </li>
+</ol>
+
+<div class="success">
+  <strong>✅ PASS CONDITION:</strong><br>
+  ✔ Message updates smoothly<br>
+  ✔ No downtime<br>
+  ✔ No manual terraform
+</div>
+
+<h2>🏁 FINAL CONFIRMATION</h2>
+<div class="success">
+  <strong>If ALL THREE tests pass:</strong><br>
+  <em>"I can deploy production by only doing <code>git push main</code>"</em>
+</div>
 
 <h2>✅ STEP 4 — VERIFY (NON-NEGOTIABLE)</h2>
 <p>After push to <code>develop</code>:</p>
