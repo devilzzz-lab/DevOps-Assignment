@@ -8,7 +8,9 @@ export default function Home() {
   const [apiBase, setApiBase] = useState('N/A');
 
   useEffect(() => {
-    const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
+    const API_BASE = process.env.NEXT_PUBLIC_API_BASE ||
+    (typeof window !== 'undefined' ? window.__API_BASE__ : undefined);
+
 
     // Show loading first (important for tests)
     setApiBase(API_BASE || 'NOT SET');
