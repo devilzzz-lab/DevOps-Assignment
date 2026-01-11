@@ -23,7 +23,7 @@ async def health_check():
 
 @app.get("/api/message")
 async def get_message():
-    return {"message": "Main deploy v1"}
+    return {"message": "main deploy v1"}
 
 
  
