@@ -105,10 +105,15 @@ resource "azurerm_container_app" "backend" {
     identity_ids = [azurerm_user_assigned_identity.this.id]
   }
 
+  registry {
+    server   = "${var.acr_name}.azurecr.io"
+    identity = azurerm_user_assigned_identity.this.id
+  }
+
   template {
     container {
       name   = "backend"
-      image = "${var.backend_image}" 
+      image  = var.backend_image
       cpu    = 0.5
       memory = "1Gi"
     }
@@ -125,12 +130,27 @@ resource "azurerm_container_app" "backend" {
   }
 }
 
+
 # ----------- Frontend Container App -----------
 resource "azurerm_container_app" "frontend" {
   name                         = "frontend-app"
   container_app_environment_id = azurerm_container_app_environment.this.id
   resource_group_name          = azurerm_resource_group.this.name
   revision_mode                = "Single"
+
+  depends_on = [
+    azurerm_container_app.backend
+  ]
+
+  identity {
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.this.id]
+  }
+
+  registry {
+    server   = "${var.acr_name}.azurecr.io"
+    identity = azurerm_user_assigned_identity.this.id
+  }
 
   template {
     container {
@@ -156,3 +176,4 @@ resource "azurerm_container_app" "frontend" {
     }
   }
 }
+

@@ -15,3 +15,8 @@ variable "frontend_image" {
   description = "Frontend image from ACR"
   type        = string
 }
+
+variable "acr_name" {
+  description = "Azure Container Registry name (without .azurecr.io)"
+  type        = string
+}
