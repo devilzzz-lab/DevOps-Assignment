@@ -90,7 +90,7 @@ jobs:
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
+          enable-Azlogin: true
 
       - name: Login to Azure ACR
         run: |
