@@ -5,20 +5,19 @@ import axios from 'axios';
 export default function Home() {
   const [message, setMessage] = useState('Loading...');
   const [status, setStatus] = useState('');
+  const [apiBase, setApiBase] = useState('N/A'); // ✅ SSR-safe default
 
   useEffect(() => {
+    // ✅ Client-only: Set dynamic API base
+    setApiBase(window.location.origin);
+    
     const fetchData = async () => {
       try {
-        // ✅ FIXED: Direct ALB URL (same domain, no CORS!)
-        const API_BASE = window.location.origin;  // http://devops-alb-xxx.us-east-1.elb.amazonaws.com
-        
-        // Check backend health
+        const API_BASE = window.location.origin;
         const healthCheck = await axios.get(`${API_BASE}/api/health`);
         
         if (healthCheck.data.status === 'healthy') {
           setStatus('✅ Backend connected!');
-          
-          // Fetch message
           const response = await axios.get(`${API_BASE}/api/message`);
           setMessage(response.data.message);
         }
@@ -50,8 +49,7 @@ export default function Home() {
           <p>{message}</p>
         </div>
         <div className="info">
-          <p>API Base: <code>{window.location.origin}</code></p>
-          <p>ALB: devops-alb-1909194751.us-east-1.elb.amazonaws.com</p>
+          <p>API Base: <code>{apiBase}</code></p> {/* ✅ No hydration error! */}
         </div>
       </main>
 
