@@ -57,9 +57,6 @@ export default function Home() {
           </p>
         </div>
         
-        <div className="info">
-          <p>Deployed on Azure Container Apps 🚀</p>
-        </div>
       </main>
 
       <style jsx>{`
