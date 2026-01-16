@@ -48,15 +48,26 @@ jobs:
 
       # ---------------- DOCKER BUILD  ----------------
       - name: Build backend Docker image
-        run: docker buildx build -t backend:${{ github.sha }} ./backend
+        run: docker build -t backend:${{ github.sha }} ./backend
 
       # ---------------- Build frontend Docker image  (AWS) ----------------
       - name: Build frontend image (AWS)
-        run: docker buildx build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AWS_BACKEND_API_URL }} -t frontend-aws:${{ github.sha }} ./frontend
-      
+        run: |
+          docker buildx build \
+            --load \
+            --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AWS_BACKEND_API_URL }} \
+            -t frontend-aws:${{ github.sha }} \
+            ./frontend
+
       # ---------------- Build frontend Docker image  (Azure) ----------------
       - name: Build frontend image (Azure)
-        run: docker buildx build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AZURE_BACKEND_API_URL }} -t frontend-azure:${{ github.sha }} ./frontend
+        run: |
+          docker buildx build \
+            --load \
+            --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AZURE_BACKEND_API_URL }} \
+            -t frontend-azure:${{ github.sha }} \
+            ./frontend
+            
       # ---------------- AWS ECR PUSH ----------------
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
