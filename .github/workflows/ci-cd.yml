@@ -46,14 +46,27 @@ jobs:
           cd frontend
           npm test
 
-      # ---------------- DOCKER BUILD ----------------
+      # ---------------- DOCKER BUILD  ----------------
       - name: Build backend Docker image
         run: |
           docker build -t backend:${{ github.sha }} ./backend
 
-      - name: Build frontend Docker image
+      # ---------------- Build backend Docker image  (Azure) ----------------
+      - name: Build frontend image (AWS)
         run: |
-          docker build -t frontend:${{ github.sha }} ./frontend
+          docker build \
+            --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AWS_BACKEND_API_URL }} \
+            -t frontend-aws:${{ github.sha }} \
+            ./frontend  
+      
+      # ---------------- Build frontend Docker image  (Azure) ----------------
+      - name: Build frontend image (Azure)
+        run: |
+          docker build \
+            --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AZURE_BACKEND_API_URL }} \
+            -t frontend-azure:${{ github.sha }} \
+            ./frontend
+
 
       # ---------------- AWS ECR PUSH ----------------
       - name: Configure AWS credentials
@@ -79,7 +92,7 @@ jobs:
 
       - name: Tag & Push frontend image to ECR
         run: |
-          docker tag frontend:${{ github.sha }} \
+          docker tag frontend-aws:${{ github.sha }} \
           ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }}
 
           docker push \
@@ -105,12 +118,11 @@ jobs:
 
       - name: Tag & Push frontend image to ACR
         run: |
-          docker tag frontend:${{ github.sha }} \
+          docker tag frontend-azure:${{ github.sha }} \
           ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}
 
           docker push \
           ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}
-  
   # ---------------- AZURE DEPLOY ----------------
   deploy-azure:
     if: github.ref == 'refs/heads/main'
