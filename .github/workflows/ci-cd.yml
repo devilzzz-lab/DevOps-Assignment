@@ -55,7 +55,7 @@ jobs:
         run: |
           docker buildx build \
             --load \
-            --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AWS_BACKEND_API_URL }}
+            --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AWS_BACKEND_API_URL }}\
             -t frontend-aws:${{ github.sha }} \
             ./frontend
       # ---------------- Build frontend Docker image  (Azure) ----------------
@@ -63,7 +63,7 @@ jobs:
         run: |
           docker buildx build \
             --load \
-            --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AZURE_BACKEND_API_URL }}
+            --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AZURE_BACKEND_API_URL }}\
             -t frontend-azure:${{ github.sha }} \
             ./frontend
 
