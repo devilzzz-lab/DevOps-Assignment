@@ -48,25 +48,15 @@ jobs:
 
       # ---------------- DOCKER BUILD  ----------------
       - name: Build backend Docker image
-        run: |
-          docker build -t backend:${{ github.sha }} ./backend
+        run: docker build -t backend:${{ github.sha }} ./backend
 
-      # ---------------- Build backend Docker image  (Azure) ----------------
+      # ---------------- Build frontend Docker image  (AWS) ----------------
       - name: Build frontend image (AWS)
-        run: |
-          docker build \
-            --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AWS_BACKEND_API_URL }} \
-            -t frontend-aws:${{ github.sha }} \
-            ./frontend  
+        run: docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AWS_BACKEND_API_URL }} -t frontend-aws:${{ github.sha }} ./frontend  
       
       # ---------------- Build frontend Docker image  (Azure) ----------------
       - name: Build frontend image (Azure)
-        run: |
-          docker build \
-            --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AZURE_BACKEND_API_URL }} \
-            -t frontend-azure:${{ github.sha }} \
-            ./frontend
-
+        run: docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AZURE_BACKEND_API_URL }} -t frontend-azure:${{ github.sha }} ./frontend
 
       # ---------------- AWS ECR PUSH ----------------
       - name: Configure AWS credentials
@@ -78,7 +68,7 @@ jobs:
 
       - name: Login to Amazon ECR
         run: |
-          aws ecr get-login-password --region $AWS_REGION \
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} \
           | docker login --username AWS \
           --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
 
@@ -105,8 +95,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
     
       - name: Login to Azure ACR
-        run: |
-          az acr login --name ${{ secrets.AZURE_ACR_NAME }}
+        run: az acr login --name ${{ secrets.AZURE_ACR_NAME }}
 
       - name: Tag & Push backend image to ACR
         run: |
@@ -123,6 +112,7 @@ jobs:
 
           docker push \
           ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}
+
   # ---------------- AZURE DEPLOY ----------------
   deploy-azure:
     if: github.ref == 'refs/heads/main'
@@ -152,12 +142,10 @@ jobs:
           -var="backend_image=${{ secrets.AZURE_ACR_NAME }}.azurecr.io/backend:${{ github.sha }}" \
           -var="frontend_image=${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}"
 
-
   # ---------------- AWS DEPLOY ----------------
-
   deploy-aws:
     if: github.ref == 'refs/heads/main'
-    needs: deploy-azure
+    needs: backend-and-frontend-ci
     runs-on: ubuntu-latest
 
     steps:
@@ -184,5 +172,3 @@ jobs:
         terraform apply -auto-approve \
         -var="backend_image=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/backend:${{ github.sha }}" \
         -var="frontend_image=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }}"
-
-
