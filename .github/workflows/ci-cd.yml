@@ -52,20 +52,13 @@ jobs:
 
       # ---------------- Build frontend Docker image  (AWS) ----------------
       - name: Build frontend image (AWS)
-        run: |
-          docker buildx build \
-            --load \
-            --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AWS_BACKEND_API_URL }}\
-            -t frontend-aws:${{ github.sha }} \
-            ./frontend
+        run: docker buildx build --load --build-arg NEXT_PUBLIC_API_URL=${{ 
+          secrets.AWS_BACKEND_API_URL }} -t frontend-aws:${{ github.sha }} ./frontend
+
       # ---------------- Build frontend Docker image  (Azure) ----------------
       - name: Build frontend image (Azure)
-        run: |
-          docker buildx build \
-            --load \
-            --build-arg NEXT_PUBLIC_API_URL=${{ secrets.AZURE_BACKEND_API_URL }}\
-            -t frontend-azure:${{ github.sha }} \
-            ./frontend
+        run: docker buildx build --load --build-arg NEXT_PUBLIC_API_URL=${{ 
+          secrets.AZURE_BACKEND_API_URL }} -t frontend-azure:${{ github.sha }} ./frontend
 
       # ---------------- AWS ECR PUSH ----------------
       - name: Configure AWS credentials
