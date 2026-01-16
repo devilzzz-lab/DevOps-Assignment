@@ -165,7 +165,7 @@
   <li>Expiration: <code>30 days</code> (fine)</li>
   <li><strong>Scopes (CHECK THESE):</strong></li>
   <li>✅ <code>repo</code></li>
-  <li>✅ <code>workflow</code> ← 🔥 THIS IS THE KEY</li>
+  <li>✅ <code>workflow</code> ← THIS IS THE KEY</li>
 </ul>
 <p><strong>⚠️ If workflow is not checked → same error again</strong></p>
 
