@@ -157,6 +157,7 @@ jobs:
 
   deploy-aws:
     if: github.ref == 'refs/heads/main'
+    needs: deploy-azure
     runs-on: ubuntu-latest
 
     steps:
