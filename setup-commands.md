@@ -259,12 +259,12 @@
 <pre><code>aws sts get-caller-identity</code></pre>
 <p>Create bucket:</p>
 <pre><code>aws s3api create-bucket \
-  --bucket devops-assignment-1234567890-us-east-1-tf-state \
+  --bucket devops-assignment-1235467890-us-east-1-tf-state \
   --region us-east-1</code></pre>
 
 <h3>🔐 ENABLE ENCRYPTION (MANDATORY)</h3>
 <pre><code>aws s3api put-bucket-encryption \
-  --bucket devops-assignment-123456789-us-east-1-tf-state \
+  --bucket devops-assignment-123546789-us-east-1-tf-state \
   --server-side-encryption-configuration '{
     "Rules": [{
       "ApplyServerSideEncryptionByDefault": {
@@ -292,7 +292,7 @@
 
 <h4>3️⃣ Create Storage Account for Terraform State</h4>
 <pre><code>az storage account create \
-  --name tfstate784156479353 \
+  --name tfstate984156479353 \
   --resource-group rg-terraform-state \
   --location eastus \
   --sku Standard_LRS \
@@ -301,11 +301,11 @@
 <h4>4️⃣ Create Blob Container for Terraform State</h4>
 <pre><code>az storage container create \
   --name tfstate \
-  --account-name tfstate784156479353</code></pre>
+  --account-name tfstate984156479353</code></pre>
 
 <h4>5️⃣ (Optional but Recommended) Enable Secure Transfer</h4>
 <pre><code>az storage account update \
-  --name tfstate784156479353 \
+  --name tfstate984156479353 \
   --resource-group rg-terraform-state \
   --https-only true</code></pre>
 
