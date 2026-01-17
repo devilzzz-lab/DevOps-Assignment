@@ -6,10 +6,64 @@
 </head>
 <body>
 
+<h1>🟢 GitHub Action Workflow Control</h1>
+
+<h3>Create NEW PAT</h3>
+
+<h3>Step 1️⃣ Go to GitHub Tokens</h3>
+<p><strong>👉 <a href="https://github.com/settings/tokens" target="_blank">https://github.com/settings/tokens</a></strong></p>
+
+<h3>Step 2️⃣ Token Settings (IMPORTANT)</h3>
+<p><strong>Fill like this:</strong></p>
+<ul>
+  <li>Note: <code>devops-assignment-ci</code></li>
+  <li>Expiration: <code>30 days</code> (fine)</li>
+  <li><strong>Scopes (CHECK THESE):</strong></li>
+  <li>✅ <code>repo</code></li>
+  <li>✅ <code>workflow</code> ← THIS IS THE KEY</li>
+</ul>
+<p><strong>⚠️ If workflow is not checked → same error again</strong></p>
+
+<h3>Step 3️⃣ Generate Token</h3>
+<ol>
+  <li>Click Generate token</li>
+  <li><strong>COPY it immediately</strong> (you won't see again)</li>
+</ol>
+
+<hr>
+
+<h3>STEP 1️⃣ Open Keychain Access (GUI)</h3>
+<ol>
+  <li>Press <code>Cmd + Space</code></li>
+  <li>Type <code>Keychain Access</code></li>
+  <li>Open it</li>
+</ol>
+
+<h3>STEP 2️⃣ Delete Old GitHub Credentials</h3>
+<ol>
+  <li>Inside Keychain Access:</li>
+  <li>Select Keychain: <code>login</code></li>
+  <li>Select Category: <code>Passwords</code></li>
+  <li>In search bar, type: <code>github.com</code></li>
+  <li>You will see entries like: <code>github.com</code></li>
+  <li><strong>🔥 DELETE ALL GitHub entries</strong></li>
+  <li>Right-click → Delete → Confirm deletion</li>
+</ol>
+
+<h3>Now push again:</h3>
+<pre><code>git push</code></pre>
+<p>When Git asks:</p>
+<ul>
+  <li>Username: your GitHub username</li>
+  <li>Password: 👉 paste the <strong>NEW PAT</strong> (not GitHub password)</li>
+</ul>
+
+<hr>
+
 <h1>🔐 STEP 1 — REQUIRED GITHUB SECRETS (VERY IMPORTANT)</h1>
 
 <h2>1️⃣ AWS Secrets (ECR)</h2>
-<p>Add these in <strong>GitHub → Settings → Secrets → Actions</strong></p>
+<p>Add these in <strong>GitHub Project Repo  → Settings → Secrets → Actions</strong></p>
 <ul>
   <li><code>AWS_ACCESS_KEY_ID</code></li>
   <li><code>AWS_SECRET_ACCESS_KEY</code></li>
@@ -66,6 +120,41 @@
 
 <hr>
 
+<h2>2️⃣ Azure Secrets (ACR)</h2>
+
+<pre><code>az ad sp create-for-rbac \
+  --name devops-assignment-sp \
+  --role acrpush \
+  --scopes /subscriptions/&lt;SUBSCRIPTION_ID&gt;/resourceGroups/devops-assignment-rg/providers/Microsoft.ContainerRegistry/registries/devopsassignmentacr \
+  --sdk-auth
+</code></pre>
+
+<p><strong>⚠️ Replace <code>&lt;SUBSCRIPTION_ID&gt;</code> properly.</strong></p>
+
+<p><strong>Output will look like:</strong></p>
+<pre>{
+  "clientId": "xxxx",
+  "clientSecret": "yyyy",
+  "subscriptionId": "zzzz",
+  "tenantId": "aaaa",
+  "activeDirectoryEndpointUrl": "...",
+  "resourceManagerEndpointUrl": "...",
+  "activeDirectoryGraphResourceId": "...",
+  "sqlManagementEndpointUrl": "...",
+  "galleryEndpointUrl": "...",
+  "managementEndpointUrl": "..."
+}</pre>
+
+<h3>STEP 2️⃣ Add this as ONE GitHub Secret</h3>
+<ol>
+  <li>GitHub → Settings → Secrets → Actions → New repository secret</li>
+  <li><strong>Name:</strong> <code>AZURE_CREDENTIALS</code></li>
+  <li><strong>Value:</strong> 👉 paste the <strong>FULL JSON output</strong> (entire block)</li>
+</ol>
+<p><strong>⚠️ Do NOT modify it.</strong></p>
+
+<hr>
+
 <h2>Create ECR Repositories (backend & frontend)</h2>
 
 <h3>Option 1: Console (simplest)</h3>
@@ -113,41 +202,6 @@
   <li>Password</li>
 </ul>
 <p><strong>⚠️ For now this is OK (later we'll use Service Principal)</strong></p>
-
-<hr>
-
-<h2>2️⃣ Azure Secrets (ACR)</h2>
-
-<pre><code>az ad sp create-for-rbac \
-  --name devops-assignment-sp \
-  --role acrpush \
-  --scopes /subscriptions/&lt;SUBSCRIPTION_ID&gt;/resourceGroups/devops-assignment-rg/providers/Microsoft.ContainerRegistry/registries/devopsassignmentacr \
-  --sdk-auth
-</code></pre>
-
-<p><strong>⚠️ Replace <code>&lt;SUBSCRIPTION_ID&gt;</code> properly.</strong></p>
-
-<p><strong>Output will look like:</strong></p>
-<pre>{
-  "clientId": "xxxx",
-  "clientSecret": "yyyy",
-  "subscriptionId": "zzzz",
-  "tenantId": "aaaa",
-  "activeDirectoryEndpointUrl": "...",
-  "resourceManagerEndpointUrl": "...",
-  "activeDirectoryGraphResourceId": "...",
-  "sqlManagementEndpointUrl": "...",
-  "galleryEndpointUrl": "...",
-  "managementEndpointUrl": "..."
-}</pre>
-
-<h3>STEP 2️⃣ Add this as ONE GitHub Secret</h3>
-<ol>
-  <li>GitHub → Settings → Secrets → Actions → New repository secret</li>
-  <li><strong>Name:</strong> <code>AZURE_CREDENTIALS</code></li>
-  <li><strong>Value:</strong> 👉 paste the <strong>FULL JSON output</strong> (entire block)</li>
-</ol>
-<p><strong>⚠️ Do NOT modify it.</strong></p>
 
 <hr>
 
@@ -201,62 +255,6 @@
 </ul>
 
 <hr>
-
-<h2>🟢 GitHub Action Workflow Control</h2>
-
-<h3>Create NEW PAT</h3>
-
-<h3>Step 1️⃣ Go to GitHub Tokens</h3>
-<p><strong>👉 <a href="https://github.com/settings/tokens" target="_blank">https://github.com/settings/tokens</a></strong></p>
-
-<h3>Step 2️⃣ Token Settings (IMPORTANT)</h3>
-<p><strong>Fill like this:</strong></p>
-<ul>
-  <li>Note: <code>devops-assignment-ci</code></li>
-  <li>Expiration: <code>30 days</code> (fine)</li>
-  <li><strong>Scopes (CHECK THESE):</strong></li>
-  <li>✅ <code>repo</code></li>
-  <li>✅ <code>workflow</code> ← THIS IS THE KEY</li>
-</ul>
-<p><strong>⚠️ If workflow is not checked → same error again</strong></p>
-
-<h3>Step 3️⃣ Generate Token</h3>
-<ol>
-  <li>Click Generate token</li>
-  <li><strong>COPY it immediately</strong> (you won't see again)</li>
-</ol>
-
-<hr>
-
-<h2>✅ FIX — DO THIS EXACTLY (2–3 minutes)</h2>
-
-<h3>STEP 1️⃣ Open Keychain Access (GUI)</h3>
-<ol>
-  <li>Press <code>Cmd + Space</code></li>
-  <li>Type <code>Keychain Access</code></li>
-  <li>Open it</li>
-</ol>
-
-<h3>STEP 2️⃣ Delete Old GitHub Credentials</h3>
-<ol>
-  <li>Inside Keychain Access:</li>
-  <li>Select Keychain: <code>login</code></li>
-  <li>Select Category: <code>Passwords</code></li>
-  <li>In search bar, type: <code>github.com</code></li>
-  <li>You will see entries like: <code>github.com</code></li>
-  <li><strong>🔥 DELETE ALL GitHub entries</strong></li>
-  <li>Right-click → Delete → Confirm deletion</li>
-</ol>
-
-<h3>Now push again:</h3>
-<pre><code>git push</code></pre>
-<p>When Git asks:</p>
-<ul>
-  <li>Username: your GitHub username</li>
-  <li>Password: 👉 paste the <strong>NEW PAT</strong> (not GitHub password)</li>
-</ul>
-
-<p>✅ CORRECT FIX (BEST PRACTICE)</p>
 
 <h3>🔑 S3 Backend Naming Pattern (Industry Standard)</h3>
 <pre><code>aws sts get-caller-identity</code></pre>
