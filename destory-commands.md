@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<h1> If you need to Destroy the Infrastructure <h1>
+
 <h2>🗑️ Terraform Destroy - AWS (Remote Backend)</h2>
 <p><strong>⚠️ Note:</strong> Since we're using <strong>remote S3 backend + DynamoDB locking</strong> via GitHub Actions, local state is unavailable. Must initialize remote backend first.</p>
 
