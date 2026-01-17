@@ -45,18 +45,23 @@ export default function Home() {
       </Head>
       
       <main>
-        <h1>Sriram DevOps Assignment</h1>
+        <h1>Multi Cloud Deployment</h1>
         
-        <div className={`message-box ${status.includes('✅') ? 'success' : status.includes('⚠️') ? 'warning' : 'error'}`}>
-          <p><strong>Status:</strong> {status}</p>
-          <h3>Backend Message</h3>
+        <p>
+          <strong>Status:</strong>{' '}
+          <span className={status.includes('✅') ? 'success' : status.includes('⚠️') ? 'warning' : 'error'}>
+            {status}
+          </span>
+        </p>
+
+        <div className="message-box">
+          <h2>Backend Message:</h2>
           <p>{message}</p>
-          <p>
-            <strong>API Base:</strong>{' '}
-            <code>{apiBase}</code>
-          </p>
         </div>
-        
+
+        <p className="info">
+          API Base: <code>{apiBase}</code>
+        </p>
       </main>
 
       <style jsx>{`
@@ -67,8 +72,7 @@ export default function Home() {
           flex-direction: column; 
           justify-content: center; 
           align-items: center; 
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          background: #f3f4f6;
         }
         
         main { 
@@ -86,95 +90,69 @@ export default function Home() {
         h1 { 
           margin: 0 0 2rem 0; 
           line-height: 1.15; 
-          font-size: 3.5rem; 
-          background: linear-gradient(45deg, #fff, #f0f0f0);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+          font-size: 3rem; 
+          color: #1f2937;
           font-weight: 700;
-          letter-spacing: -0.02em;
         }
         
         .message-box { 
           margin: 2rem 0; 
-          padding: 2.5rem 3rem; 
-          border: 2px solid transparent;
-          border-radius: 20px; 
+          padding: 1.5rem 2rem; 
+          border: 1px solid #e5e7eb; 
+          border-radius: 12px; 
           width: 100%; 
-          max-width: 700px; 
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(10px);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-          transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
+          max-width: 600px; 
+          background: #ffffff; 
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         
-        .message-box::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 4px;
-          background: linear-gradient(90deg, #10b981, #f59e0b, #ef4444);
-        }
-        
-        .message-box.success {
-          border-color: #10b981;
-          background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
-        }
-        
-        .message-box.warning {
-          border-color: #f59e0b;
-          background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
-        }
-        
-        .message-box.error {
-          border-color: #ef4444;
-          background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
-        }
-        
-        .message-box h3 {
-          margin: 1.5rem 0 1rem 0;
-          font-size: 1.5rem;
-          color: #1f2937;
-          font-weight: 600;
+        .message-box h2 {
+          margin: 0 0 1rem 0;
+          color: #374151;
+          font-size: 1.25rem;
         }
         
         .message-box p {
-          margin: 0.5rem 0;
+          margin: 0 0 1rem 0;
+          color: #4b5563;
           font-size: 1.1rem;
-          color: #374151;
-          line-height: 1.6;
         }
         
-        code { 
-          background: rgba(0, 0, 0, 0.1);
-          padding: 0.4rem 0.8rem; 
-          border-radius: 8px; 
-          font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
-          font-size: 0.95rem;
-          color: #1f2937;
-          font-weight: 500;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        .success { 
+          color: #10b981; 
+          font-weight: bold; 
+        }
+        
+        .warning {
+          color: #f59e0b;
+          font-weight: bold;
+        }
+        
+        .error { 
+          color: #ef4444; 
+          font-weight: bold; 
         }
         
         .info { 
-          margin-top: 3rem; 
-          font-size: 1rem; 
-          color: rgba(255, 255, 255, 0.9);
-          font-weight: 500;
+          margin-top: 2rem; 
+          font-size: 0.95rem; 
+          color: #6b7280; 
+        }
+        
+        code { 
+          background: #f3f4f6; 
+          padding: 0.3rem 0.6rem; 
+          border-radius: 6px; 
+          font-family: 'SF Mono', Monaco, monospace;
+          color: #1f2937;
         }
         
         @media (max-width: 768px) {
           h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
           }
-          
-          .message-box {
-            padding: 2rem;
-            margin: 1rem;
+          main {
+            padding: 3rem 1rem;
           }
         }
       `}</style>

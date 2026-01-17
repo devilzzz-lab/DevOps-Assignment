@@ -8,7 +8,7 @@ describe('Home Page', () => {
   it('renders Backend Message heading', () => {
     render(<Home />);
     // Fixed: test looks for JUST "Backend Message" (h3), not "Backend Message:" 
-    expect(screen.getByText('Backend Message')).toBeInTheDocument();
+    expect(screen.getByText('Backend Message:')).toBeInTheDocument();
   });
 
   it('renders initial loading state', () => {
