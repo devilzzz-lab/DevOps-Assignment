@@ -10,16 +10,16 @@
 
 <p><strong>Status:</strong></p>
 <ul>
-  <li>Upto Phase 4 (Backend &amp; Git Workflow) completed.</li>
-  <li>Phase 5 (Frontend Dockerization &amp; Testing) in progress.</li>
-  <li>Phase 6–7 planned.</li>
+  <li>Till Phase 5 (Infrastructure as Code - Multi-Cloud) completed.</li>
+  <li>Phase 6 (Monitoring, Alerting &amp; Observability) in progress.</li>
+  <li>Phase 7 (Load Balancing &amp; Resiliency) planned.</li>
 </ul>
 
 <p>
-This project demonstrates end-to-end DevOps practices by designing, containerizing, testing, and deploying a two-tier web application across multiple cloud platforms using automated CI/CD pipelines and Infrastructure as Code. 
+This project demonstrates end-to-end DevOps practices by designing, containerizing, testing, and deploying a two-tier web application across multiple cloud platforms using automated CI/CD pipelines and Infrastructure as Code.
 </p>
 <p>
-The project follows professional Git workflows, container best practices, cloud-native architecture, and production-grade observability and security practices. 
+The project follows professional Git workflows, container best practices, cloud-native architecture, and production-grade observability and security practices.
 </p>
 
 <h2>Project Overview</h2>
@@ -29,7 +29,7 @@ The project follows professional Git workflows, container best practices, cloud-
   <li>Frontend application built using Next.js</li>
   <li>Docker-based containerization</li>
   <li>GitHub-based version control and Pull Request workflow</li>
-  <li>CI/CD automation using GitHub Actions (planned)</li>
+  <li>CI/CD automation using GitHub Actions</li>
   <li>Multi-cloud deployment using Terraform</li>
   <li>Target clouds: AWS and Azure</li>
 </ul>
@@ -40,9 +40,12 @@ The project follows professional Git workflows, container best practices, cloud-
   <li>Backend implemented using FastAPI with clean REST APIs</li>
   <li>Backend unit tests written using pytest</li>
   <li>Backend Dockerized using multi-stage builds and non-root user</li>
+  <li>Frontend Dockerized with Next.js standalone mode</li>
   <li>Environment-based configuration support</li>
   <li>Production-ready repository structure</li>
   <li>Cloud-ready application design</li>
+  <li>Automated CI/CD pipeline with GitHub Actions</li>
+  <li>Multi-cloud infrastructure managed with Terraform</li>
 </ul>
 
 <h2>Project Phases</h2>
@@ -82,54 +85,56 @@ The project follows professional Git workflows, container best practices, cloud-
 <h4>Deliverable</h4>
 <p>Tested and Dockerized FastAPI backend ready for CI/CD and cloud deployment.</p>
 
-<h3>🟨 PHASE 3 – Frontend Testing &amp; Dockerization (In Progress)</h3>
+<h3>🟨 PHASE 3 – Frontend Testing &amp; Dockerization (Completed)</h3>
 <h4>Objective</h4>
 <p>Containerize frontend application and validate backend integration.</p>
 
-<h4>Planned activities</h4>
+<h4>Completed activities</h4>
 <ul>
-  <li>Add frontend unit and end-to-end tests</li>
-  <li>Dockerize Next.js application using multi-stage builds</li>
-  <li>Configure environment-based backend API URL</li>
-  <li>Integrate frontend and backend via Docker Compose</li>
+  <li>Added frontend unit and end-to-end tests</li>
+  <li>Dockerized Next.js application using multi-stage builds</li>
+  <li>Configured environment-based backend API URL</li>
+  <li>Integrated frontend and backend via Docker Compose</li>
 </ul>
 
 <h4>Deliverable</h4>
 <p>Production-ready frontend container with automated testing.</p>
 
-<h3>🟧 PHASE 4 – CI/CD Pipeline Automation (Planned)</h3>
+<h3>🟧 PHASE 4 – CI/CD Pipeline Automation (Completed)</h3>
 <h4>Objective</h4>
 <p>Automate build, test, containerization, and deployment workflows.</p>
 
-<h4>Planned activities</h4>
+<h4>Completed activities</h4>
 <ul>
-  <li>Configure GitHub Actions pipelines</li>
+  <li>Configured GitHub Actions pipelines</li>
   <li>Trigger pipelines on develop and main branches</li>
   <li>Build and tag Docker images using Git SHA</li>
   <li>Push images to AWS ECR and Azure ACR</li>
-  <li>Automate deployments to AWS and Azure</li>
+  <li>Automated deployments to AWS and Azure</li>
 </ul>
 
 <h4>Deliverable</h4>
 <p>Fully automated CI/CD pipeline with zero manual steps.</p>
 
-<h3>🟥 PHASE 5 – Infrastructure as Code (Multi-Cloud) (Planned)</h3>
+<h3>🟥 PHASE 5 – Infrastructure as Code (Multi-Cloud) (Completed)</h3>
 <h4>Objective</h4>
 <p>Provision cloud infrastructure using Terraform.</p>
 
-<h4>Planned activities</h4>
+<h4>Completed activities</h4>
 <ul>
   <li>AWS ECS Fargate with Application Load Balancer</li>
   <li>Azure Container Apps or AKS</li>
   <li>VPC/VNet networking and security controls</li>
   <li>IAM roles and managed identities</li>
   <li>Secret management using cloud-native services</li>
+  <li>S3 backend for Terraform state management</li>
+  <li>DynamoDB for state locking</li>
 </ul>
 
-<h4>Working</h4>
+<h4>Deliverable</h4>
 <p>Reusable Terraform-based infrastructure for AWS and Azure.</p>
 
-<h3>🟪 PHASE 6 – Monitoring, Alerting &amp; Observability (Planned)</h3>
+<h3>🟪 PHASE 6 – Monitoring, Alerting &amp; Observability (In Progress)</h3>
 <h4>Objective</h4>
 <p>Implement monitoring and alerting for applications and infrastructure.</p>
 
@@ -141,8 +146,8 @@ The project follows professional Git workflows, container best practices, cloud-
   <li>Configure alerts for failures and resource saturation</li>
 </ul>
 
-<h4>⏳Pending</h4>
-<p>Production-grade monitoring and alerting setup.</p>
+<h4>Status</h4>
+<p>Production-grade monitoring and alerting setup in progress.</p>
 
 <h3>🟫 PHASE 7 – Load Balancing &amp; Resiliency (Planned)</h3>
 <h4>Objective</h4>
@@ -156,8 +161,8 @@ The project follows professional Git workflows, container best practices, cloud-
   <li>Confirm zero-downtime availability</li>
 </ul>
 
-<h4>⏳Pending</h4>
-<p>Highly available and resilient application deployment.</p>
+<h4>Status</h4>
+<p>Highly available and resilient application deployment pending.</p>
 
 <h2>Technical Stack</h2>
 <ul>
@@ -275,9 +280,6 @@ The project follows professional Git workflows, container best practices, cloud-
     </tr>
   </tbody>
 </table>
-
-<h2>📅 Deadline</h2>
-<p><strong>3 days / 11-Jan-2026</strong></p>
 
 </body>
 </html>
