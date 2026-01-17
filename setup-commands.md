@@ -22,7 +22,6 @@
   <li>✅ <code>repo</code></li>
   <li>✅ <code>workflow</code> ← THIS IS THE KEY</li>
 </ul>
-<p><strong>⚠️ If workflow is not checked → same error again</strong></p>
 
 <h3>Step 3️⃣ Generate Token</h3>
 <ol>
@@ -63,7 +62,7 @@
 <h1>🔐 STEP 1 — REQUIRED GITHUB SECRETS (VERY IMPORTANT)</h1>
 
 <h2>1️⃣ AWS Secrets (ECR)</h2>
-<p>Add these in <strong>GitHub Project Repo  → Settings → Secrets → Actions</strong></p>
+<p>Add these in <strong>GitHub Project Repo → Settings → Secrets → Actions</strong></p>
 <ul>
   <li><code>AWS_ACCESS_KEY_ID</code></li>
   <li><code>AWS_SECRET_ACCESS_KEY</code></li>
@@ -256,7 +255,7 @@
 
 <hr>
 
-<h3>🔑 S3 Backend Naming Pattern (Industry Standard)</h3>
+<h3>🔑 S3 Remote Backend Naming Pattern (Industry Standard)</h3>
 <pre><code>aws sts get-caller-identity</code></pre>
 <p>Create bucket:</p>
 <pre><code>aws s3api create-bucket \
@@ -281,6 +280,34 @@
   --key-schema AttributeName=LockID,KeyType=HASH \
   --billing-mode PAY_PER_REQUEST \
   --region us-east-1</code></pre>
+
+<hr>
+
+<h3>🔑 Terraform Remote backend for Azure (Industry Standard)</h3>
+
+<h4>2️⃣ Create Resource Group (ONE TIME)</h4>
+<pre><code>az group create \
+  --name rg-terraform-state \
+  --location eastus</code></pre>
+
+<h4>3️⃣ Create Storage Account for Terraform State</h4>
+<pre><code>az storage account create \
+  --name tfstate784156479353 \
+  --resource-group rg-terraform-state \
+  --location eastus \
+  --sku Standard_LRS \
+  --kind StorageV2</code></pre>
+
+<h4>4️⃣ Create Blob Container for Terraform State</h4>
+<pre><code>az storage container create \
+  --name tfstate \
+  --account-name tfstate784156479353</code></pre>
+
+<h4>5️⃣ (Optional but Recommended) Enable Secure Transfer</h4>
+<pre><code>az storage account update \
+  --name tfstate784156479353 \
+  --resource-group rg-terraform-state \
+  --https-only true</code></pre>
 
 <hr>
 
