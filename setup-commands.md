@@ -16,6 +16,8 @@
   <li><code>AWS_REGION</code></li>
   <li><code>AWS_ACCOUNT_ID</code></li>
   <li><code>AZURE_CREDENTIALS</code></li>
+  <li><code>AWS_BACKEND_API_URL</code></li>
+  <li><code>AZURE_BACKEND_API_URL</code></li>
 </ul>
 
 <h2>How to Find these Secrets</h2>
@@ -39,9 +41,7 @@
   <li><code>AmazonECSFullAccess</code> (needed later)</li>
   <li><code>CloudWatchFullAccess</code> (needed later)</li>
 </ul>
-<div class="warning">
-  <strong>⚠️ Do NOT give AdministratorAccess (bad practice)</strong>
-</div>
+<p><strong>⚠️ Do NOT give AdministratorAccess (bad practice)</strong></p>
 <p>Click Next → Create user</p>
 
 <h3>Step 4: SAVE CREDENTIALS (CRITICAL)</h3>
@@ -205,9 +205,7 @@
   <li>Password: 👉 paste the <strong>NEW PAT</strong> (not GitHub password)</li>
 </ul>
 
-<div class="success">
-  ✅ CORRECT FIX (BEST PRACTICE)
-</div>
+<p>✅ CORRECT FIX (BEST PRACTICE)</p>
 
 <h3>🔑 S3 Backend Naming Pattern (Industry Standard)</h3>
 <pre><code>aws sts get-caller-identity</code></pre>
@@ -237,107 +235,27 @@
 
 <hr>
 
-<h2>🧪 TEST 1 — DEVELOP BRANCH (CI ONLY)</h2>
-<p><strong>🎯 Goal:</strong> CI runs, Images build & push, ❌ NO Terraform</p>
+<h3>🟠 AWS_BACKEND_API_URL (ALB DNS)</h3>
 
+<h4>Steps to find ALB DNS:</h4>
 <ol>
-  <li><strong>Switch to develop:</strong>
-    <pre><code>git checkout develop
-git pull origin develop</code></pre>
-  </li>
-  <li><strong>Change backend message:</strong>
-    <pre><code>@app.get("/api/message")
-async def get_message():
-    return {"message": "develop build – should NOT deploy"}</code></pre>
-  </li>
-  <li><strong>Commit & push:</strong>
-    <pre><code>git add backend
-git commit -m "test: develop branch CI only"
-git push origin develop</code></pre>
-  </li>
+  <li>AWS Console → EC2 → Load Balancers</li>
+  <li>Select <code>devops-alb</code></li>
+  <li>Copy <strong>DNS name</strong></li>
 </ol>
 
-<div class="success">
-  <strong>✅ PASS CONDITION:</strong><br>
-  ✔ CI ran<br>
-  ✔ No AWS infra created
-</div>
+<hr>
 
-<h2>🧪 TEST 2 — MAIN BRANCH (FULL DEPLOY)</h2>
-<p><strong>🎯 Goal:</strong> CI + Terraform apply + App reachable</p>
+<h3>🔵 AZURE_BACKEND_API_URL (Container App FQDN)</h3>
 
+<p>In Azure, frontend and backend are deployed as separate Container Apps. The frontend directly calls the backend using its public FQDN.</p>
+
+<h4>Steps:</h4>
 <ol>
-  <li><strong>Switch to main:</strong>
-    <pre><code>git checkout main
-git pull origin main</code></pre>
-  </li>
-  <li><strong>Change backend message:</strong>
-    <pre><code>@app.get("/api/message")
-async def get_message():
-    return {"message": "main deploy v1"}</code></pre>
-  </li>
-  <li><strong>Commit & push:</strong>
-    <pre><code>git add backend
-git commit -m "deploy: main deploy v1"
-git push origin main</code></pre>
-  </li>
+  <li>Azure Portal → Container Apps</li>
+  <li>Select <code>backend-app</code></li>
+  <li>Copy <strong>Application URL</strong></li>
 </ol>
-
-<div class="success">
-  <strong>✅ PASS CONDITION:</strong><br>
-  ✔ Terraform ran from CI<br>
-  ✔ Infra created<br>
-  ✔ App reachable
-</div>
-
-<h2>🧪 TEST 3 — ZERO-DOWNTIME DEPLOY (MOST IMPORTANT)</h2>
-<p><strong>🎯 Goal:</strong> Rolling update, No downtime</p>
-
-<ol>
-  <li><strong>Change backend message:</strong>
-    <pre><code>@app.get("/api/message")
-async def get_message():
-    return {"message": "main deploy v2 – zero downtime"}</code></pre>
-  </li>
-  <li><strong>Commit & push:</strong>
-    <pre><code>git add backend
-git commit -m "deploy: main deploy v2"
-git push origin main</code></pre>
-  </li>
-  <li><strong>Live downtime test (DURING deployment):</strong>
-    <pre><code>while true; do
-  curl http://&lt;alb-dns&gt;/api/message
-  sleep 1
-done</code></pre>
-  </li>
-</ol>
-
-<div class="success">
-  <strong>✅ PASS CONDITION:</strong><br>
-  ✔ Message updates smoothly<br>
-  ✔ No downtime<br>
-  ✔ No manual terraform
-</div>
-
-<h2>🏁 FINAL CONFIRMATION</h2>
-<div class="success">
-  <strong>If ALL THREE tests pass:</strong><br>
-  <em>"I can deploy production by only doing <code>git push main</code>"</em>
-</div>
-
-<h2>✅ STEP 4 — VERIFY (NON-NEGOTIABLE)</h2>
-<p>After push to <code>develop</code>:</p>
-<ol>
-  <li>GitHub → Actions</li>
-  <li>Ensure:</li>
-</ol>
-<ul>
-  <li>All tests PASS</li>
-  <li>Backend tests PASS</li>
-  <li>Frontend tests PASS</li>
-  <li>ECR has <code>backend</code> & <code>frontend</code> images (Git SHA tag)</li>
-  <li>ACR has <code>backend</code> & <code>frontend</code> images (Git SHA tag)</li>
-</ul>
 
 </body>
 </html>
