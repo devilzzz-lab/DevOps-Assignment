@@ -151,6 +151,57 @@
 
 <hr>
 
+<h2>🔐 Azure IAM & Enterprise Application Setup</h2>
+
+<h3>Step-by-Step Instructions</h3>
+
+<ol>
+  <li>Go to <strong>Azure Portal</strong></li>
+  <li>Navigate to:
+    <ul>
+      <li><strong>Subscriptions</strong></li>
+      <li>Select your active subscription</li>
+    </ul>
+  </li>
+  <li>In the left menu, click <strong>Access control (IAM)</strong></li>
+  <li>Click <strong>Add</strong> → <strong>Add role assignment</strong></li>
+  <li>In the <strong>Role</strong> tab:
+    <ul>
+      <li>Select <strong>Privileged administrator roles</strong></li>
+      <li>Choose <strong>Contributor</strong></li>
+      <li>Click <strong>Next</strong></li>
+    </ul>
+  </li>
+  <li>In the <strong>Members</strong> tab:
+    <ul>
+      <li>Select <strong>User, group, or service principal</strong></li>
+      <li>Click <strong>Select members</strong></li>
+    </ul>
+  </li>
+  <li>Search for <code>devops-assignment-sp</code>, select it and click <strong>Select</strong></li>
+  <li>Click <strong>Review + assign</strong></li>
+  <li>Click <strong>Assign</strong></li>
+</ol>
+
+<h3>✅ Result</h3>
+<p>The service principal <code>devops-assignment-sp</code> now has <strong>Contributor</strong> access at the subscription level.</p>
+<p>This allows GitHub Actions to:</p>
+<ul>
+  <li>Create and manage Azure resources</li>
+  <li>Push images to Azure Container Registry (ACR)</li>
+  <li>Deploy infrastructure using Terraform</li>
+</ul>
+
+<h3>🔍 Verification</h3>
+<p>Verify the assignment by going to:</p>
+<ul>
+  <li><strong>Subscription → Access control (IAM) → Role assignments</strong></li>
+  <li>Filter by <strong>Contributor</strong></li>
+  <li>Confirm <code>devops-assignment-sp</code> is listed</li>
+</ul>
+
+<hr>
+
 <h2>🟢 GitHub Action Workflow Control</h2>
 
 <h3>Create NEW PAT</h3>
