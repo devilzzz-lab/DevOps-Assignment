@@ -255,7 +255,7 @@
 
 <hr>
 
-<h3>🔑 S3 Remote Backend Naming Pattern (Industry Standard)</h3>
+<h3>🔑 S3 Remote Backend for AWS (Industry Standard)</h3>
 <pre><code>aws sts get-caller-identity</code></pre>
 <p>Create bucket:</p>
 <pre><code>aws s3api create-bucket \
