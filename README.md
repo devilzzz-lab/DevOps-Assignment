@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h1>DevOps Assignment — Multi-Cloud Deployment Automation Project</h1>
+<h1>Multi-Cloud Deployment Automation Project</h1>
 
 <p><strong>Status:</strong></p>
 <ul>
