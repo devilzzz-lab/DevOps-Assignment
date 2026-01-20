@@ -155,7 +155,7 @@ jobs:
           -var="backend_image=${{ secrets.AZURE_ACR_NAME }}.azurecr.io/backend:${{ github.sha }}" \
           -var="frontend_image=${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}"
 
-  # ---------------- AWS DEPLOY ----------------
+  # ---------------- AWS DEPLOY -----------------
   deploy-aws:
     if: github.ref == 'refs/heads/main'
     needs: backend-and-frontend-ci
