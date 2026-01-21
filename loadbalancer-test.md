@@ -56,7 +56,7 @@ Running: 2</code></pre>
 <h2>✅ STEP 2: Prove Traffic Distribution (EASY + SAFE)</h2>
 <p><strong>Goal:</strong> Show that traffic is going through ALB and being handled by multiple ECS tasks.</p>
 
-<h3>🔹 OPTION A (RECOMMENDED): ALB Target Group RequestCount</h3>
+<h3>ALB Target Group RequestCount</h3>
 <ol>
   <li>AWS Console → <strong>CloudWatch</strong> → <strong>Metrics</strong></li>
   <li>Choose: <strong>ApplicationELB</strong> → <strong>Per AppELB, per TG Metrics</strong></li>
@@ -102,14 +102,15 @@ Running: 2</code></pre>
 <ol>
   <li>AWS Console → <strong>ECS</strong> → <strong>Clusters</strong></li>
   <li>Open: <code>devops-assignment-cluster</code></li>
+  <li>Open: <code>Service</code></li>
+  <li>Open: <code>backend</code></li>
   <li>Click <strong>Tasks</strong></li>
 </ol>
 
 <h4>You should see:</h4>
 <ul>
-  <li><strong>2 running tasks</strong></li>
+  <li><strong>2 backend running tasks</strong></li>
 </ul>
-<p>📸 <em>(Screenshot of both tasks running)</em></p>
 
 <h3>🔹 STEP 3B: STOP ONE TASK (DO THIS NOW)</h3>
 <ol>
@@ -167,7 +168,6 @@ Running: 2</code></pre>
 </ol>
 
 <p>✅ <strong>App should still load perfectly</strong></p>
-<p>📸 <strong>SCREENSHOT #2</strong> (Browser showing app working)</p>
 
 <h4>3️⃣ Check ECS Service (after ~1–2 min):</h4>
 <ul>
