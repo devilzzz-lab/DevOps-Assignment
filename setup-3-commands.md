@@ -329,8 +329,8 @@
       <li>Refresh frontend multiple times</li>
       <li>Or use: \
       <code>for i in {1..200}; do
-              curl http://&lt;azure-backend-url&gt;/api/message &
-            done</code></li>
+        curl http://&lt;azure-backend-url&gt;/api/message &
+    done</code></li>
     </ul>
   </li>
   <li>Wait 5-10 minutes</li>
