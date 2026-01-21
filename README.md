@@ -19,8 +19,11 @@
 This project demonstrates end-to-end DevOps practices by designing, containerizing, testing, and deploying a two-tier web application across AWS and Azure using automated CI/CD pipelines and Infrastructure as Code.
 </p>
 
-<h2>Documentation</h2>
+<h2>Documentation & Demo</h2>
 <ul>
+  <li><strong>Demo Video:</strong> 
+    <a href="https://drive.google.com/file/d/186g7llVMwMSyEOPTx-OJANGcpTni_4EU/view?usp=sharing" target="_blank">Demo-Video-1 (8 minutes)</a>
+  </li>
   <li><strong>Project overview and workflow:</strong> 
     <a href="README.md" target="_blank"><code>README.md</code> (root)</a>
   </li>
@@ -246,23 +249,10 @@ This project demonstrates end-to-end DevOps practices by designing, containerizi
   </tbody>
 </table>
 
-
-<h2>Deliverables - ALL COMPLETE</h2>
-
-<h3>Mandatory</h3>
-<ul>
-  <li>Source code with tests</li>
-  <li>Dockerfiles (multi-stage, production-ready)</li>
-  <li>Terraform configs (AWS + Azure)</li>
-  <li>GitHub Actions CI/CD workflows</li>
-  <li>Complete documentation</li>
-</ul>
-
-
 <h2>PROJECT STATUS: 100% COMPLETE</h2>
 
 <p>
-All technical requirements satisfied. Production-grade implementation with complete documentation
+All technical requirements satisfied. Production-grade implementation with complete documentation.
 </p>
 
 </body>
