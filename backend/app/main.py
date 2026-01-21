@@ -12,7 +12,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -23,7 +23,7 @@ async def health_check():
 
 @app.get("/api/message")
 async def get_message():
-    return {"message": "main deploy v2 – zero downtime"}
+    return {"message": "main deploy v1"}
 
 
  
