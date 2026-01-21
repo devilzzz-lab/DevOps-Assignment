@@ -25,31 +25,31 @@ This project demonstrates end-to-end DevOps practices by designing, containerizi
     <a href="https://drive.google.com/drive/folders/18Kd_FdNlcBaZz9gNGIokvdabPZ_uMHWh?usp=sharing" target="_blank">Demo-Videos</a>
   </li>
   <li><strong>Project overview and workflow:</strong> 
-    <a href="README.md" target="_blank"><code>README.md</code> (root)</a>
+    <a href="README.md" target="_blank">README.md (root)</a>
   </li>
   <li><strong>Backend service documentation:</strong> 
-    <a href="backend/README.md" target="_blank"><code>backend/README.md</code></a>
+    <a href="backend/README.md" target="_blank">backend/README.md</a>
   </li>
   <li><strong>Frontend application documentation:</strong> 
-    <a href="frontend/README.md" target="_blank"><code>frontend/README.md</code></a>
+    <a href="frontend/README.md" target="_blank">frontend/README.md</a>
   </li>
   <li><strong>AWS & Azure setup instructions:</strong> 
-    <a href="setup-1-commands.md" target="_blank"><code>setup-1-commands.md</code></a>
+    <a href="setup-1-commands.md" target="_blank">setup-1-commands.md</a>
   </li>
   <li><strong>Run & test project:</strong> 
-    <a href="run-commands.md" target="_blank"><code>run-commands.md</code></a>
+    <a href="run-commands.md" target="_blank">run-commands.md</a>
   </li>
   <li><strong>Destroy infrastructure:</strong> 
-    <a href="destroy-commands.md" target="_blank"><code>destroy-commands.md</code></a>
+    <a href="destroy-commands.md" target="_blank">destroy-commands.md</a>
   </li>
   <li><strong>AWS CloudWatch setup:</strong> 
-    <a href="setup-2-commands.md" target="_blank"><code>setup-2-commands.md</code></a>
+    <a href="setup-2-commands.md" target="_blank">setup-2-commands.md</a>
   </li>
   <li><strong>Azure Monitor setup:</strong> 
-    <a href="setup-3-commands.md" target="_blank"><code>setup-3-commands.md</code></a>
+    <a href="setup-3-commands.md" target="_blank">setup-3-commands.md</a>
   </li>
   <li><strong>Load Balancing Test:</strong> 
-    <a href="loadbalancer-test.md" target="_blank"><code>loadbalancer-test.md</code></a>
+    <a href="loadbalancer-test.md" target="_blank">loadbalancer-test.md</a>
   </li>
 </ul>
 
