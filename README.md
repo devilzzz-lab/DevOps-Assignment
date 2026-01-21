@@ -21,6 +21,33 @@ This project demonstrates end-to-end DevOps practices by designing, containerizi
 The project follows professional Git workflows, container best practices, cloud-native architecture, and production-grade observability and security practices.
 </p>
 
+<h2>📚 Documentation</h2>
+<ul>
+  <li><strong>Project overview and workflow:</strong> 
+    <a href="README.md" target="_blank"><code>README.md</code> (root)</a>
+  </li>
+  <li><strong>Backend service documentation:</strong> 
+    <a href="backend/backend.md" target="_blank"><code>backend/README.md</code></a>
+  </li>
+  <li><strong>Frontend application documentation:</strong> 
+    <a href="frontend/README.md" target="_blank"><code>frontend/README.md</code></a>
+  </li>
+  <li><strong>AWS & Azure setup instructions:</strong> 
+    <a href="setup-1-commands.md" target="_blank"><code>setup-1-commands.md</code></a>
+  </li>
+  <li><strong>Run & test project:</strong> 
+    <a href="run-commands.md" target="_blank"><code>run-commands.md</code></a>
+  </li>
+  <li><strong>Destroy infrastructure:</strong> 
+    <a href="destroy-commands.md" target="_blank"><code>destroy-commands.md</code></a>
+  </li>
+  <li><strong>AWS CloudWatch setup:</strong> 
+    <a href="setup-2-commands.md" target="_blank"><code>setup-2-commands.md</code></a>
+  </li>
+  <li><strong>Azure Monitor setup:</strong> 
+    <a href="setup-3-commands.md" target="_blank"><code>setup-3-commands.md</code></a>
+</ul>
+
 <h2>Project Overview</h2>
 <p>The application consists of:</p>
 <ul>
@@ -181,33 +208,6 @@ The project follows professional Git workflows, container best practices, cloud-
   <li><strong>Monitoring:</strong> AWS CloudWatch, Azure Monitor</li>
   <li><strong>Alerting:</strong> AWS SNS, Azure Action Groups</li>
   <li><strong>Version Control:</strong> Git &amp; GitHub</li>
-</ul>
-
-<h2>📚 Documentation</h2>
-<ul>
-  <li><strong>Project overview and workflow:</strong> 
-    <a href="README.md" target="_blank"><code>README.md</code> (root)</a>
-  </li>
-  <li><strong>Backend service documentation:</strong> 
-    <a href="backend/backend.md" target="_blank"><code>backend/README.md</code></a>
-  </li>
-  <li><strong>Frontend application documentation:</strong> 
-    <a href="frontend/README.md" target="_blank"><code>frontend/README.md</code></a>
-  </li>
-  <li><strong>AWS & Azure setup instructions:</strong> 
-    <a href="setup-1-commands.md" target="_blank"><code>setup-commands.md</code></a>
-  </li>
-  <li><strong>Run & test project:</strong> 
-    <a href="run-commands.md" target="_blank"><code>run-commands.md</code></a>
-  </li>
-  <li><strong>Destroy infrastructure:</strong> 
-    <a href="destroy-commands.md" target="_blank"><code>destroy-commands.md</code></a>
-  </li>
-  <li><strong>AWS CloudWatch setup:</strong> 
-    <a href="setup-2-commands.md" target="_blank"><code>setup2-commands.md</code></a>
-  </li>
-  <li><strong>Azure Monitor setup:</strong> 
-    <a href="setup-3-commands.md" target="_blank"><code>setup3-commands.md</code></a>
 </ul>
 
 
