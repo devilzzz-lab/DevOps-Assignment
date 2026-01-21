@@ -327,16 +327,19 @@
   <li>Generate traffic:
     <ul>
       <li>Refresh frontend multiple times</li>
-      <li>Or use: 
-      <code>for i in {1..200}; do
-          curl http://&lt;azure-backend-url&gt;/api/message &
-        done</code></li>
+      <li>Or use command line:</li>
     </ul>
+    <pre><code>for i in {1..200}; do
+  curl http://&lt;azure-backend-url&gt;/api/message &amp;
+done
+wait</code></pre>
+    <p><em>(Replace <code>&lt;azure-backend-url&gt;</code> with your actual backend URL)</em></p>
   </li>
   <li>Wait 5-10 minutes</li>
   <li>Check email for alert notification 📧</li>
   <li><strong>Reset threshold back to 50% or 70%</strong></li>
 </ol>
+
 
 <hr>
 
