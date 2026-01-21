@@ -331,8 +331,7 @@
     </ul>
     <pre><code>for i in {1..200}; do
   curl http://&lt;azure-backend-url&gt;/api/message &amp;
-done
-wait</code></pre>
+done</code></pre>
     <p><em>(Replace <code>&lt;azure-backend-url&gt;</code> with your actual backend URL)</em></p>
   </li>
   <li>Wait 5-10 minutes</li>
