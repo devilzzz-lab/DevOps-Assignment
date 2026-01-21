@@ -258,63 +258,11 @@ This project demonstrates end-to-end DevOps practices by designing, containerizi
   <li>Complete documentation</li>
 </ul>
 
-<h2>Submission Checklist - 100% COMPLETE</h2>
-<table border="1" cellpadding="8" cellspacing="0">
-  <thead>
-    <tr>
-      <th>Requirement</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>README.md with instructions</td>
-      <td>Complete</td>
-    </tr>
-    <tr>
-      <td>Backend & frontend tests</td>
-      <td>Passing</td>
-    </tr>
-    <tr>
-      <td>Docker images built & pushed</td>
-      <td>ECR + ACR</td>
-    </tr>
-    <tr>
-      <td>Deployed on AWS + Azure</td>
-      <td>Live URLs</td>
-    </tr>
-    <tr>
-      <td>Terraform provisioning</td>
-      <td>IaC complete</td>
-    </tr>
-    <tr>
-      <td>Automated CI/CD</td>
-      <td>GitHub Actions</td>
-    </tr>
-    <tr>
-      <td>Monitoring dashboards & alerts</td>
-      <td>Configured + tested</td>
-    </tr>
-    <tr>
-      <td>Secure secrets & IAM</td>
-      <td>GitHub Secrets + IAM</td>
-    </tr>
-    <tr>
-      <td>Load balancing & resiliency</td>
-      <td>Validated</td>
-    </tr>
-    <tr>
-      <td>Demo video & presentation</td>
-      <td>Ready to record</td>
-    </tr>
-  </tbody>
-</table>
-
 
 <h2>PROJECT STATUS: 100% COMPLETE</h2>
 
 <p>
-All technical requirements satisfied. Production-grade implementation with complete documentation and live deployments on AWS + Azure.
+All technical requirements satisfied. Production-grade implementation with complete documentation
 </p>
 
 </body>
