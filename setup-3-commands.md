@@ -327,7 +327,9 @@
   <li>Generate traffic:
     <ul>
       <li>Refresh frontend multiple times</li>
-      <li>Or use: <code>curl http://&lt;azure-backend-url&gt;/api/message</code></li>
+      <li>Or use: <code>for i in {1..200}; do
+  curl http://&lt;azure-backend-url&gt;/api/message &
+done</code></li>
     </ul>
   </li>
   <li>Wait 5-10 minutes</li>
@@ -407,7 +409,7 @@
     </tr>
     <tr>
       <td>Notification</td>
-      <td>Email (srisuj0814@gmail.com)</td>
+      <td>Email (xxxxxxx@gmail.com)</td>
     </tr>
   </tbody>
 </table>

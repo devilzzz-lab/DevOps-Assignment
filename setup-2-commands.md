@@ -304,7 +304,7 @@
 <h3>Generate CPU Load</h3>
 <p>Run this command to trigger the alarm:</p>
 <pre><code>for i in {1..200}; do
-  curl http://&lt;backend-alb-dns&gt;/api/message
+  curl http://&lt;backend-alb-dns&gt;/api/message &
 done</code></pre>
 
 <h3>Wait and Monitor</h3>
