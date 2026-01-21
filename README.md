@@ -46,6 +46,8 @@ The project follows professional Git workflows, container best practices, cloud-
   </li>
   <li><strong>Azure Monitor setup:</strong> 
     <a href="setup-3-commands.md" target="_blank"><code>setup-3-commands.md</code></a>
+  li><strong>Load Balancing Test:</strong> 
+    <a href="loadbalancer-test.md" target="_blank"><code>loadbalancer-test.md</code></a>
 </ul>
 
 <h2>🧩 System Architecture (High Level)</h2>
