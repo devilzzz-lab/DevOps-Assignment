@@ -81,25 +81,126 @@ This project demonstrates end-to-end DevOps practices by designing, containerizi
 <h2>Project Phases - ALL COMPLETED</h2>
 
 <h3>🟩 PHASE 1 - Version Control & Git Workflow</h3>
-<p>Professional Git workflow with PRs and branch strategy implemented.</p>
+<h4>Objective</h4>
+<p>Establish a professional Git workflow aligned with real-world DevOps practices.</p>
 
-<h3>🟦 PHASE 2 - Backend API & Dockerization</h3>
-<p>FastAPI backend with pytest tests, multi-stage Docker build.</p>
+<h4>Key activities</h4>
+<ul>
+  <li>Forked the provided repository</li>
+  <li>Maintained original project structure</li>
+  <li>Implemented branch strategy: main, develop, feature/*</li>
+  <li>Used feature branches for development</li>
+  <li>Merged changes using Pull Requests</li>
+  <li>Avoided direct commits to main</li>
+  <li>Used clear and meaningful commit messages</li>
+</ul>
+
+<h4>Deliverable</h4>
+<p>Version-controlled repository with clean commit history and Pull Request workflow.</p>
+
+<h3>🟦 PHASE 2 - Backend API Implementation & Dockerization</h3>
+<h4>Objective</h4>
+<p>Develop a production-ready backend service with testing and containerization.</p>
+
+<h4>Key activities</h4>
+<ul>
+  <li>Implemented FastAPI backend service</li>
+  <li>Exposed /api/health and /api/message endpoints</li>
+  <li>Added environment-based configuration</li>
+  <li>Wrote unit tests for backend endpoints using pytest</li>
+  <li>Dockerized backend using multi-stage Dockerfile</li>
+  <li>Ensured non-root container execution</li>
+</ul>
+
+<h4>Deliverable</h4>
+<p>Tested and Dockerized FastAPI backend ready for CI/CD and cloud deployment.</p>
 
 <h3>🟨 PHASE 3 - Frontend Testing & Dockerization</h3>
-<p>Next.js frontend with tests, Dockerized, backend integration.</p>
+<h4>Objective</h4>
+<p>Containerize frontend application and validate backend integration.</p>
+
+<h4>Key activities</h4>
+<ul>
+  <li>Added frontend unit and end-to-end tests</li>
+  <li>Dockerized Next.js application using multi-stage builds</li>
+  <li>Configured environment-based backend API URL</li>
+  <li>Integrated frontend and backend via Docker Compose</li>
+</ul>
+
+<h4>Deliverable</h4>
+<p>Production-ready frontend container with automated testing.</p>
 
 <h3>🟧 PHASE 4 - CI/CD Pipeline Automation</h3>
-<p>GitHub Actions: Build, Test, Push, Deploy (AWS + Azure).</p>
+<h4>Objective</h4>
+<p>Automate build, test, containerization, and deployment workflows.</p>
+
+<h4>Key activities</h4>
+<ul>
+  <li>Configured GitHub Actions pipelines</li>
+  <li>Trigger pipelines on develop and main branches</li>
+  <li>Build and tag Docker images using Git SHA</li>
+  <li>Push images to AWS ECR and Azure ACR</li>
+  <li>Automated deployments to AWS and Azure</li>
+</ul>
+
+<h4>Deliverable</h4>
+<p>Fully automated CI/CD pipeline with zero manual steps.</p>
 
 <h3>🟥 PHASE 5 - Infrastructure as Code (Multi-Cloud)</h3>
-<p>AWS ECS Fargate + ALB, Azure Container Apps, Terraform state management.</p>
+<h4>Objective</h4>
+<p>Provision cloud infrastructure using Terraform.</p>
 
-<h3>🟪 PHASE 6 - Monitoring & Alerting</h3>
-<p>CloudWatch + Azure Monitor dashboards, CPU alerts with email notifications.</p>
+<h4>Key activities</h4>
+<ul>
+  <li>AWS ECS Fargate with Application Load Balancer</li>
+  <li>Azure Container Apps with managed networking</li>
+  <li>VPC/VNet networking and security controls</li>
+  <li>IAM roles and managed identities</li>
+  <li>Secret management using cloud-native services</li>
+  <li>S3 backend for Terraform state management (AWS)</li>
+  <li>Azure Storage backend for Terraform state (Azure)</li>
+  <li>DynamoDB for state locking (AWS)</li>
+</ul>
+
+<h4>Deliverable</h4>
+<p>Reusable Terraform-based infrastructure for AWS and Azure.</p>
+
+<h3>🟪 PHASE 6 - Monitoring, Alerting & Observability</h3>
+<h4>Objective</h4>
+<p>Implement monitoring and alerting for applications and infrastructure.</p>
+
+<h4>Key activities</h4>
+<ul>
+  <li>Configured AWS CloudWatch dashboards with ECS and ALB metrics</li>
+  <li>Configured Azure Monitor dashboards with Container Apps metrics</li>
+  <li>Collected CPU, memory, request count, and response time metrics</li>
+  <li>Created production-grade dashboards for application health</li>
+  <li>Configured CloudWatch alarms for CPU threshold (70% for 5 minutes)</li>
+  <li>Configured Azure Monitor alerts for CPU threshold with 5-minute lookback</li>
+  <li>Set up SNS email notifications (AWS) and action groups (Azure)</li>
+  <li>Validated alert delivery via email</li>
+</ul>
+
+<h4>Deliverable</h4>
+<p>Production-grade monitoring dashboards and alerting system on both AWS and Azure.</p>
 
 <h3>🟫 PHASE 7 - Load Balancing & Resiliency</h3>
-<p>Validated: 2 ECS tasks, ALB traffic distribution, zero-downtime failure recovery.</p>
+<h4>Objective</h4>
+<p>Validate high availability and fault tolerance.</p>
+
+<h4>Key activities</h4>
+<ul>
+  <li>Verified 2 ECS tasks running behind Application Load Balancer</li>
+  <li>Validated ALB target group health (2 healthy targets)</li>
+  <li>Proved traffic distribution using CloudWatch RequestCount metrics</li>
+  <li>Tested resiliency by stopping one ECS task</li>
+  <li>Confirmed ALB removed unhealthy target automatically</li>
+  <li>Verified zero-downtime application availability</li>
+  <li>Observed ECS auto-recovery launching replacement task</li>
+</ul>
+
+<h4>Deliverable</h4>
+<p>Production-grade load balancing and fault-tolerant deployment validated.</p>
 
 <h2>Technical Stack</h2>
 <table border="1" cellpadding="8" cellspacing="0">
@@ -145,31 +246,6 @@ This project demonstrates end-to-end DevOps practices by designing, containerizi
   </tbody>
 </table>
 
-<h2>Live Deployments</h2>
-<table border="1" cellpadding="8" cellspacing="0">
-  <thead>
-    <tr>
-      <th>Platform</th>
-      <th>Frontend URL</th>
-      <th>Backend URL</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>AWS</td>
-      <td>AWS_FRONTEND_URL</td>
-      <td>AWS_BACKEND_URL</td>
-      <td>Live</td>
-    </tr>
-    <tr>
-      <td>Azure</td>
-      <td>AZURE_FRONTEND_URL</td>
-      <td>AZURE_BACKEND_URL</td>
-      <td>Live</td>
-    </tr>
-  </tbody>
-</table>
 
 <h2>Deliverables - ALL COMPLETE</h2>
 
