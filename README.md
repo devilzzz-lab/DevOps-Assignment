@@ -195,7 +195,7 @@ The project follows professional Git workflows, container best practices, cloud-
     <a href="frontend/README.md" target="_blank"><code>frontend/README.md</code></a>
   </li>
   <li><strong>AWS & Azure setup instructions:</strong> 
-    <a href="setup-commands.md" target="_blank"><code>setup-commands.md</code></a>
+    <a href="setup-1-commands.md" target="_blank"><code>setup-commands.md</code></a>
   </li>
   <li><strong>Run & test project:</strong> 
     <a href="run-commands.md" target="_blank"><code>run-commands.md</code></a>
@@ -204,10 +204,10 @@ The project follows professional Git workflows, container best practices, cloud-
     <a href="destroy-commands.md" target="_blank"><code>destroy-commands.md</code></a>
   </li>
   <li><strong>AWS CloudWatch setup:</strong> 
-    <a href="setup2-commands.md" target="_blank"><code>setup2-commands.md</code></a>
+    <a href="setup-2-commands.md" target="_blank"><code>setup2-commands.md</code></a>
   </li>
   <li><strong>Azure Monitor setup:</strong> 
-    <a href="setup3-commands.md" target="_blank"><code>setup3-commands.md</code></a>
+    <a href="setup-3-commands.md" target="_blank"><code>setup3-commands.md</code></a>
 </ul>
 
 
