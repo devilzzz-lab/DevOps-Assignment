@@ -48,6 +48,9 @@ The project follows professional Git workflows, container best practices, cloud-
     <a href="setup-3-commands.md" target="_blank"><code>setup-3-commands.md</code></a>
 </ul>
 
+<h2>🧩 System Architecture (High Level)</h2>
+<img src="architecture.jpeg" alt="Architecture Diagram" width="100%">
+
 <h2>Project Overview</h2>
 <p>The application consists of:</p>
 <ul>
