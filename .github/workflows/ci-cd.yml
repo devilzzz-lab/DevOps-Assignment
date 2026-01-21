@@ -101,7 +101,7 @@ jobs:
           docker push \
           ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }}
 
-      # ---------------- AZURE LOGIN ----------------
+      # ---------------- AZURE ACR PUSH ----------------
       - name: Azure Login
         uses: azure/login@v2
         with:
@@ -155,7 +155,7 @@ jobs:
           -var="backend_image=${{ secrets.AZURE_ACR_NAME }}.azurecr.io/backend:${{ github.sha }}" \
           -var="frontend_image=${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}"
 
-  # ---------------- AWS DEPLOY ----------------
+  # ---------------- AWS DEPLOY -----------------
   deploy-aws:
     if: github.ref == 'refs/heads/main'
     needs: backend-and-frontend-ci

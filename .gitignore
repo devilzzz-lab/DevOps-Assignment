@@ -112,3 +112,6 @@ Dockerfile.*.local
 # Next.js
 .next/
 out/
+__pycache__/
+*.pyc
+*.pyo

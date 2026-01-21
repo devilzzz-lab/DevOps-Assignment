@@ -6,21 +6,55 @@
 </head>
 <body>
 
-<h1>Multi-Cloud Deployment Automation Project</h1>
+<h1>Multi-Cloud Deployment Automation Project - COMPLETED</h1>
 
 <p><strong>Status:</strong></p>
 <ul>
-  <li>Till Phase 5 (Infrastructure as Code - Multi-Cloud) completed.</li>
-  <li>Phase 6 (Monitoring, Alerting &amp; Observability) in progress.</li>
-  <li>Phase 7 (Load Balancing &amp; Resiliency) planned.</li>
+  <li>All Phases 1-7 COMPLETED</li>
+  <li>Demo Video & Presentation: READY</li>
+  <li>100% Production-Ready</li>
 </ul>
 
 <p>
-This project demonstrates end-to-end DevOps practices by designing, containerizing, testing, and deploying a two-tier web application across multiple cloud platforms using automated CI/CD pipelines and Infrastructure as Code.
+This project demonstrates end-to-end DevOps practices by designing, containerizing, testing, and deploying a two-tier web application across AWS and Azure using automated CI/CD pipelines and Infrastructure as Code.
 </p>
-<p>
-The project follows professional Git workflows, container best practices, cloud-native architecture, and production-grade observability and security practices.
-</p>
+
+<h2>Documentation & Demo</h2>
+<ul>
+  <li><strong>Demo Video Link:</strong> 
+    <a href="https://drive.google.com/drive/folders/18Kd_FdNlcBaZz9gNGIokvdabPZ_uMHWh?usp=sharing" target="_blank">Demo-Videos</a>
+  </li>
+  <li><strong>Project overview and workflow:</strong> 
+    <a href="README.md" target="_blank">README.md (root)</a>
+  </li>
+  <li><strong>Backend service documentation:</strong> 
+    <a href="backend/README.md" target="_blank">backend/README.md</a>
+  </li>
+  <li><strong>Frontend application documentation:</strong> 
+    <a href="frontend/README.md" target="_blank">frontend/README.md</a>
+  </li>
+  <li><strong>AWS & Azure setup instructions:</strong> 
+    <a href="setup-1-commands.md" target="_blank">setup-1-commands.md</a>
+  </li>
+  <li><strong>Run & test project:</strong> 
+    <a href="run-commands.md" target="_blank">run-commands.md</a>
+  </li>
+  <li><strong>Destroy infrastructure:</strong> 
+    <a href="destroy-commands.md" target="_blank">destroy-commands.md</a>
+  </li>
+  <li><strong>AWS CloudWatch setup:</strong> 
+    <a href="setup-2-commands.md" target="_blank">setup-2-commands.md</a>
+  </li>
+  <li><strong>Azure Monitor setup:</strong> 
+    <a href="setup-3-commands.md" target="_blank">setup-3-commands.md</a>
+  </li>
+  <li><strong>Load Balancing Test:</strong> 
+    <a href="loadbalancer-test.md" target="_blank">loadbalancer-test.md</a>
+  </li>
+</ul>
+
+<h2>System Architecture (High Level)</h2>
+<img src="architecture.jpeg" alt="Architecture Diagram" width="100%">
 
 <h2>Project Overview</h2>
 <p>The application consists of:</p>
@@ -29,28 +63,27 @@ The project follows professional Git workflows, container best practices, cloud-
   <li>Frontend application built using Next.js</li>
   <li>Docker-based containerization</li>
   <li>GitHub-based version control and Pull Request workflow</li>
-  <li>CI/CD automation using GitHub Actions</li>
-  <li>Multi-cloud deployment using Terraform</li>
+  <li>GitHub Actions CI/CD automation</li>
+  <li>Terraform multi-cloud deployment</li>
   <li>Target clouds: AWS and Azure</li>
 </ul>
 
 <h2>Highlights</h2>
 <ul>
   <li>Structured Git workflow using main, develop, and feature branches</li>
-  <li>Backend implemented using FastAPI with clean REST APIs</li>
-  <li>Backend unit tests written using pytest</li>
-  <li>Backend Dockerized using multi-stage builds and non-root user</li>
-  <li>Frontend Dockerized with Next.js standalone mode</li>
-  <li>Environment-based configuration support</li>
-  <li>Production-ready repository structure</li>
-  <li>Cloud-ready application design</li>
-  <li>Automated CI/CD pipeline with GitHub Actions</li>
-  <li>Multi-cloud infrastructure managed with Terraform</li>
+  <li>FastAPI backend with clean REST APIs and pytest tests</li>
+  <li>Multi-stage Docker builds with non-root containers</li>
+  <li>Next.js frontend in standalone mode with environment config</li>
+  <li>Fully automated CI/CD pipeline with zero manual steps</li>
+  <li>Multi-cloud IaC using Terraform for AWS ECS and Azure Container Apps</li>
+  <li>Production-grade monitoring with CloudWatch and Azure Monitor</li>
+  <li>Alerting configured with email notifications for CPU thresholds</li>
+  <li>Load balancing validated with ALB resiliency testing</li>
 </ul>
 
-<h2>Project Phases</h2>
+<h2>Project Phases - ALL COMPLETED</h2>
 
-<h3>🟩 PHASE 1 – Version Control &amp; Git Workflow (Completed)</h3>
+<h3>🟩 PHASE 1 - Version Control & Git Workflow</h3>
 <h4>Objective</h4>
 <p>Establish a professional Git workflow aligned with real-world DevOps practices.</p>
 
@@ -68,16 +101,16 @@ The project follows professional Git workflows, container best practices, cloud-
 <h4>Deliverable</h4>
 <p>Version-controlled repository with clean commit history and Pull Request workflow.</p>
 
-<h3>🟦 PHASE 2 – Backend API Implementation &amp; Dockerization (Completed)</h3>
+<h3>🟦 PHASE 2 - Backend API Implementation & Dockerization</h3>
 <h4>Objective</h4>
 <p>Develop a production-ready backend service with testing and containerization.</p>
 
 <h4>Key activities</h4>
 <ul>
   <li>Implemented FastAPI backend service</li>
-  <li>Exposed <code>/api/health</code> and <code>/api/message</code> endpoints</li>
+  <li>Exposed /api/health and /api/message endpoints</li>
   <li>Added environment-based configuration</li>
-  <li>Wrote unit tests for backend endpoints</li>
+  <li>Wrote unit tests for backend endpoints using pytest</li>
   <li>Dockerized backend using multi-stage Dockerfile</li>
   <li>Ensured non-root container execution</li>
 </ul>
@@ -85,11 +118,11 @@ The project follows professional Git workflows, container best practices, cloud-
 <h4>Deliverable</h4>
 <p>Tested and Dockerized FastAPI backend ready for CI/CD and cloud deployment.</p>
 
-<h3>🟨 PHASE 3 – Frontend Testing &amp; Dockerization (Completed)</h3>
+<h3>🟨 PHASE 3 - Frontend Testing & Dockerization</h3>
 <h4>Objective</h4>
 <p>Containerize frontend application and validate backend integration.</p>
 
-<h4>Completed activities</h4>
+<h4>Key activities</h4>
 <ul>
   <li>Added frontend unit and end-to-end tests</li>
   <li>Dockerized Next.js application using multi-stage builds</li>
@@ -100,11 +133,11 @@ The project follows professional Git workflows, container best practices, cloud-
 <h4>Deliverable</h4>
 <p>Production-ready frontend container with automated testing.</p>
 
-<h3>🟧 PHASE 4 – CI/CD Pipeline Automation (Completed)</h3>
+<h3>🟧 PHASE 4 - CI/CD Pipeline Automation</h3>
 <h4>Objective</h4>
 <p>Automate build, test, containerization, and deployment workflows.</p>
 
-<h4>Completed activities</h4>
+<h4>Key activities</h4>
 <ul>
   <li>Configured GitHub Actions pipelines</li>
   <li>Trigger pipelines on develop and main branches</li>
@@ -116,170 +149,111 @@ The project follows professional Git workflows, container best practices, cloud-
 <h4>Deliverable</h4>
 <p>Fully automated CI/CD pipeline with zero manual steps.</p>
 
-<h3>🟥 PHASE 5 – Infrastructure as Code (Multi-Cloud) (Completed)</h3>
+<h3>🟥 PHASE 5 - Infrastructure as Code (Multi-Cloud)</h3>
 <h4>Objective</h4>
 <p>Provision cloud infrastructure using Terraform.</p>
 
-<h4>Completed activities</h4>
+<h4>Key activities</h4>
 <ul>
   <li>AWS ECS Fargate with Application Load Balancer</li>
-  <li>Azure Container Apps or AKS</li>
+  <li>Azure Container Apps with managed networking</li>
   <li>VPC/VNet networking and security controls</li>
   <li>IAM roles and managed identities</li>
   <li>Secret management using cloud-native services</li>
-  <li>S3 backend for Terraform state management</li>
-  <li>DynamoDB for state locking</li>
+  <li>S3 backend for Terraform state management (AWS)</li>
+  <li>Azure Storage backend for Terraform state (Azure)</li>
+  <li>DynamoDB for state locking (AWS)</li>
 </ul>
 
 <h4>Deliverable</h4>
 <p>Reusable Terraform-based infrastructure for AWS and Azure.</p>
 
-<h3>🟪 PHASE 6 – Monitoring, Alerting &amp; Observability (In Progress)</h3>
+<h3>🟪 PHASE 6 - Monitoring, Alerting & Observability</h3>
 <h4>Objective</h4>
 <p>Implement monitoring and alerting for applications and infrastructure.</p>
 
-<h4>Planned activities</h4>
+<h4>Key activities</h4>
 <ul>
-  <li>Configure cloud-native monitoring services</li>
-  <li>Collect CPU, memory, and request metrics</li>
-  <li>Create dashboards for application health</li>
-  <li>Configure alerts for failures and resource saturation</li>
+  <li>Configured AWS CloudWatch dashboards with ECS and ALB metrics</li>
+  <li>Configured Azure Monitor dashboards with Container Apps metrics</li>
+  <li>Collected CPU, memory, request count, and response time metrics</li>
+  <li>Created production-grade dashboards for application health</li>
+  <li>Configured CloudWatch alarms for CPU threshold (70% for 5 minutes)</li>
+  <li>Configured Azure Monitor alerts for CPU threshold with 5-minute lookback</li>
+  <li>Set up SNS email notifications (AWS) and action groups (Azure)</li>
+  <li>Validated alert delivery via email</li>
 </ul>
 
-<h4>Status</h4>
-<p>Production-grade monitoring and alerting setup in progress.</p>
+<h4>Deliverable</h4>
+<p>Production-grade monitoring dashboards and alerting system on both AWS and Azure.</p>
 
-<h3>🟫 PHASE 7 – Load Balancing &amp; Resiliency (Planned)</h3>
+<h3>🟫 PHASE 7 - Load Balancing & Resiliency</h3>
 <h4>Objective</h4>
 <p>Validate high availability and fault tolerance.</p>
 
-<h4>Planned activities</h4>
+<h4>Key activities</h4>
 <ul>
-  <li>Run multiple container instances</li>
-  <li>Validate load balancer traffic distribution</li>
-  <li>Simulate instance failures</li>
-  <li>Confirm zero-downtime availability</li>
+  <li>Verified 2 ECS tasks running behind Application Load Balancer</li>
+  <li>Validated ALB target group health (2 healthy targets)</li>
+  <li>Proved traffic distribution using CloudWatch RequestCount metrics</li>
+  <li>Tested resiliency by stopping one ECS task</li>
+  <li>Confirmed ALB removed unhealthy target automatically</li>
+  <li>Verified zero-downtime application availability</li>
+  <li>Observed ECS auto-recovery launching replacement task</li>
 </ul>
 
-<h4>Status</h4>
-<p>Highly available and resilient application deployment pending.</p>
+<h4>Deliverable</h4>
+<p>Production-grade load balancing and fault-tolerant deployment validated.</p>
 
 <h2>Technical Stack</h2>
-<ul>
-  <li><strong>Backend:</strong> FastAPI (Python)</li>
-  <li><strong>Frontend:</strong> Next.js</li>
-  <li><strong>Containerization:</strong> Docker</li>
-  <li><strong>CI/CD:</strong> GitHub Actions</li>
-  <li><strong>IaC:</strong> Terraform</li>
-  <li><strong>Cloud:</strong> AWS, Azure</li>
-  <li><strong>Testing:</strong> Pytest, Jest</li>
-  <li><strong>Monitoring:</strong> CloudWatch, Azure Monitor</li>
-  <li><strong>Version Control:</strong> Git &amp; GitHub</li>
-</ul>
-
-<h2>Documentation</h2>
-<ul>
-  <li>Project overview and workflow: Root README</li>
-  <li>Backend service documentation: backend README</li>
-  <li>Frontend application documentation: frontend README</li>
-</ul>
-
-<hr>
-
-<h2>📦 Deliverables</h2>
-
-<h3>Mandatory</h3>
-<p>GitHub repository with:</p>
-<ul>
-  <li>Source code</li>
-  <li>Dockerfiles</li>
-  <li>Terraform configs</li>
-  <li>CI/CD workflows</li>
-  <li>README.md</li>
-</ul>
-
-<h3>Hosted URLs</h3>
-<ul>
-  <li>Frontend &amp; backend for each cloud</li>
-</ul>
-
-<h3>Demo Video (5–8 minutes)</h3>
-<p>Covering:</p>
-<ul>
-  <li>Architecture</li>
-  <li>Git workflow</li>
-  <li>Dockerization</li>
-  <li>CI/CD</li>
-  <li>Terraform</li>
-  <li>Monitoring &amp; alerts</li>
-  <li>Security</li>
-  <li>Load balancing test</li>
-</ul>
-
-<h3>Evidence</h3>
-<ul>
-  <li>CI/CD logs</li>
-  <li>Terraform apply output or state</li>
-  <li>Monitoring dashboards screenshots</li>
-  <li>Secret retrieval proof (non-sensitive)</li>
-</ul>
-
-<h2>✅ Submission Checklist</h2>
-<ul>
-  <li>README.md with clear instructions</li>
-  <li>Backend &amp; frontend tests passing</li>
-  <li>Docker images built &amp; pushed</li>
-  <li>Deployed on at least 2 cloud platforms</li>
-  <li>Terraform-only provisioning</li>
-  <li>Automated CI/CD deployments</li>
-  <li>Monitoring dashboards &amp; alerts</li>
-  <li>Secure secrets &amp; IAM roles</li>
-  <li>Demo video included</li>
-</ul>
-
-<h2>🏆 Grading Rubric</h2>
 <table border="1" cellpadding="8" cellspacing="0">
   <thead>
     <tr>
-      <th>Criteria</th>
-      <th>Weight</th>
+      <th>Component</th>
+      <th>Technology</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Version Control &amp; Documentation</td>
-      <td>10%</td>
+      <td>Backend</td>
+      <td>FastAPI (Python)</td>
     </tr>
     <tr>
-      <td>Dockerization</td>
-      <td>15%</td>
+      <td>Frontend</td>
+      <td>Next.js</td>
     </tr>
     <tr>
-      <td>CI/CD Automation</td>
-      <td>20%</td>
+      <td>Containerization</td>
+      <td>Docker (Multi-stage)</td>
     </tr>
     <tr>
-      <td>Multi-Cloud Terraform (2 Clouds)</td>
-      <td>25%</td>
+      <td>CI/CD</td>
+      <td>GitHub Actions</td>
     </tr>
     <tr>
-      <td>Monitoring &amp; Alerting</td>
-      <td>10%</td>
+      <td>Infrastructure</td>
+      <td>Terraform</td>
     </tr>
     <tr>
-      <td>Security &amp; IAM</td>
-      <td>5%</td>
+      <td>Cloud Platforms</td>
+      <td>AWS ECS Fargate + Azure Container Apps</td>
     </tr>
     <tr>
-      <td>Load Balancing &amp; Resiliency</td>
-      <td>10%</td>
+      <td>Monitoring</td>
+      <td>CloudWatch + Azure Monitor</td>
     </tr>
     <tr>
-      <td>Demo Video &amp; Presentation</td>
-      <td>5%</td>
+      <td>Alerting</td>
+      <td>SNS + Action Groups (Email)</td>
     </tr>
   </tbody>
 </table>
+
+<h2>PROJECT STATUS: 100% COMPLETE</h2>
+
+<p>
+All technical requirements satisfied. Production-grade implementation with complete documentation.
+</p>
 
 </body>
 </html>
