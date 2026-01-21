@@ -163,7 +163,7 @@ Running: 2</code></pre>
 
 <h4>2️⃣ Test Application URL:</h4>
 <ol>
-  <li>Open your <strong>ALB DNS</strong> / frontend</li>
+  <li>Open your <strong>ALB DNS</strong> /api/message</li>
   <li>Refresh page multiple times</li>
 </ol>
 
