@@ -183,14 +183,33 @@ The project follows professional Git workflows, container best practices, cloud-
   <li><strong>Version Control:</strong> Git &amp; GitHub</li>
 </ul>
 
-<h2>Documentation</h2>
+<h2>📚 Documentation</h2>
 <ul>
-  <li>Project overview and workflow: Root README</li>
-  <li>Backend service documentation: backend README</li>
-  <li>Frontend application documentation: frontend README</li>
-  <li>AWS CloudWatch setup guide: monitoring documentation</li>
-  <li>Azure Monitor setup guide: monitoring documentation</li>
+  <li><strong>Project overview and workflow:</strong> 
+    <a href="README.md" target="_blank"><code>README.md</code> (root)</a>
+  </li>
+  <li><strong>Backend service documentation:</strong> 
+    <a href="backend/backend.md" target="_blank"><code>backend/README.md</code></a>
+  </li>
+  <li><strong>Frontend application documentation:</strong> 
+    <a href="frontend/README.md" target="_blank"><code>frontend/README.md</code></a>
+  </li>
+  <li><strong>AWS & Azure setup instructions:</strong> 
+    <a href="setup-commands.md" target="_blank"><code>setup-commands.md</code></a>
+  </li>
+  <li><strong>Run & test project:</strong> 
+    <a href="run-commands.md" target="_blank"><code>run-commands.md</code></a>
+  </li>
+  <li><strong>Destroy infrastructure:</strong> 
+    <a href="destroy-commands.md" target="_blank"><code>destroy-commands.md</code></a>
+  </li>
+  <li><strong>AWS CloudWatch setup:</strong> 
+    <a href="setup2-commands.md" target="_blank"><code>setup2-commands.md</code></a>
+  </li>
+  <li><strong>Azure Monitor setup:</strong> 
+    <a href="setup3-commands.md" target="_blank"><code>setup3-commands.md</code></a>
 </ul>
+
 
 <hr>
 
