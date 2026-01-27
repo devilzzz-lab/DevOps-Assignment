@@ -54,7 +54,7 @@ This project demonstrates end-to-end DevOps practices by designing, containerizi
 </ul>
 
 <h2>System Architecture (High Level)</h2>
-<img src="architecture.jpeg" alt="Architecture Diagram" width="100%">
+<img src="architecture-light.png" alt="Architecture Diagram" width="100%">
 
 <h2>Project Overview</h2>
 <p>The application consists of:</p>
