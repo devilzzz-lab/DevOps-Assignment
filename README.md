@@ -28,10 +28,10 @@ This project demonstrates end-to-end DevOps practices by designing, containerizi
     <a href="README.md" target="_blank">README.md (root)</a>
   </li>
   <li><strong>Backend service documentation:</strong> 
-    <a href="backend/README.md" target="_blank">backend/README.md</a>
+    <a href="backend/backend.md" target="_blank">backend/backend.md</a>
   </li>
   <li><strong>Frontend application documentation:</strong> 
-    <a href="frontend/README.md" target="_blank">frontend/README.md</a>
+    <a href="frontend/frontend.md" target="_blank">frontend/frontend.md</a>
   </li>
   <li><strong>AWS & Azure setup instructions:</strong> 
     <a href="setup-1-commands.md" target="_blank">setup-1-commands.md</a>
