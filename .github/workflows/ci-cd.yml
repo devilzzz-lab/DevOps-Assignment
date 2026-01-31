@@ -1,187 +1,187 @@
-name: CI-CD Pipeline
+# name: CI-CD Pipeline
 
-on:
-  push:
-    branches:
-      - develop
-      - main
+# on:
+#   push:
+#     branches:
+#       - develop
+#       - main
 
-jobs:
-  backend-and-frontend-ci:
-    runs-on: ubuntu-latest
+# jobs:
+#   backend-and-frontend-ci:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
 
-      # ---------------- BACKEND ----------------
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+#       # ---------------- BACKEND ----------------
+#       - name: Set up Python
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: '3.11'
 
-      - name: Install backend dependencies
-        run: |
-          cd backend
-          pip install -r requirements.txt
+#       - name: Install backend dependencies
+#         run: |
+#           cd backend
+#           pip install -r requirements.txt
 
-      - name: Run backend tests
-        run: |
-          cd backend
-          python3 -m pytest
+#       - name: Run backend tests
+#         run: |
+#           cd backend
+#           python3 -m pytest
 
-      # ---------------- FRONTEND ----------------
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
+#       # ---------------- FRONTEND ----------------
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: '18'
 
-      - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
+#       - name: Install frontend dependencies
+#         run: |
+#           cd frontend
+#           npm install
 
-      - name: Run frontend tests
-        run: |
-          cd frontend
-          npm test
+#       - name: Run frontend tests
+#         run: |
+#           cd frontend
+#           npm test
 
-      # ---------------- DOCKER BUILD  ----------------
-      - name: Build backend Docker image
-        run: docker build -t backend:${{ github.sha }} ./backend
+#       # ---------------- DOCKER BUILD  ----------------
+#       - name: Build backend Docker image
+#         run: docker build -t backend:${{ github.sha }} ./backend
 
-      # # ---------------- Build frontend Docker image  (AWS) ----------------
+#       # # ---------------- Build frontend Docker image  (AWS) ----------------
      
-      # - name: Build frontend image (AWS)
-      #   uses: docker/build-push-action@v6
-      #   with:
-      #     context: ./frontend
-      #     load: true
-      #     build-args: |
-      #       NEXT_PUBLIC_API_URL=${{ secrets.AWS_BACKEND_API_URL }}
-      #     tags: frontend-aws:${{ github.sha }}
+#       # - name: Build frontend image (AWS)
+#       #   uses: docker/build-push-action@v6
+#       #   with:
+#       #     context: ./frontend
+#       #     load: true
+#       #     build-args: |
+#       #       NEXT_PUBLIC_API_URL=${{ secrets.AWS_BACKEND_API_URL }}
+#       #     tags: frontend-aws:${{ github.sha }}
 
-      # ---------------- Build frontend Docker image  (Azure) ----------------
-      - name: Build frontend image (Azure)
-        uses: docker/build-push-action@v6
-        with:
-          context: ./frontend
-          load: true
-          build-args: |
-            NEXT_PUBLIC_API_URL=${{ secrets.AZURE_BACKEND_API_URL }}
-          tags: frontend-azure:${{ github.sha }}
+#       # ---------------- Build frontend Docker image  (Azure) ----------------
+#       - name: Build frontend image (Azure)
+#         uses: docker/build-push-action@v6
+#         with:
+#           context: ./frontend
+#           load: true
+#           build-args: |
+#             NEXT_PUBLIC_API_URL=${{ secrets.AZURE_BACKEND_API_URL }}
+#           tags: frontend-azure:${{ github.sha }}
           
-      # # ---------------- AWS ECR PUSH ----------------
-      # - name: Configure AWS credentials
-      #   uses: aws-actions/configure-aws-credentials@v4
-      #   with:
-      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws-region: ${{ secrets.AWS_REGION }}
+#       # # ---------------- AWS ECR PUSH ----------------
+#       # - name: Configure AWS credentials
+#       #   uses: aws-actions/configure-aws-credentials@v4
+#       #   with:
+#       #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#       #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#       #     aws-region: ${{ secrets.AWS_REGION }}
 
-      # - name: Login to Amazon ECR
-      #   run: |
-      #     aws ecr get-login-password --region ${{ secrets.AWS_REGION }} \
-      #     | docker login --username AWS \
-      #     --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+#       # - name: Login to Amazon ECR
+#       #   run: |
+#       #     aws ecr get-login-password --region ${{ secrets.AWS_REGION }} \
+#       #     | docker login --username AWS \
+#       #     --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
 
-      # - name: Tag & Push backend image to ECR
-      #   run: |
-      #     docker tag backend:${{ github.sha }} \
-      #     ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/backend:${{ github.sha }}
+#       # - name: Tag & Push backend image to ECR
+#       #   run: |
+#       #     docker tag backend:${{ github.sha }} \
+#       #     ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/backend:${{ github.sha }}
 
-      #     docker push \
-      #     ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/backend:${{ github.sha }}
+#       #     docker push \
+#       #     ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/backend:${{ github.sha }}
 
-      # - name: Tag & Push frontend image to ECR
-      #   run: |
-      #     docker tag frontend-aws:${{ github.sha }} \
-      #     ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }}
+#       # - name: Tag & Push frontend image to ECR
+#       #   run: |
+#       #     docker tag frontend-aws:${{ github.sha }} \
+#       #     ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }}
 
-      #     docker push \
-      #     ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }}
+#       #     docker push \
+#       #     ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }}
 
-      # ---------------- AZURE ACR PUSH ----------------
-      - name: Azure Login
-        uses: azure/login@v2
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+#       # ---------------- AZURE ACR PUSH ----------------
+#       - name: Azure Login
+#         uses: azure/login@v2
+#         with:
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
     
-      - name: Login to Azure ACR
-        run: az acr login --name ${{ secrets.AZURE_ACR_NAME }}
+#       - name: Login to Azure ACR
+#         run: az acr login --name ${{ secrets.AZURE_ACR_NAME }}
 
-      - name: Tag & Push backend image to ACR
-        run: |
-          docker tag backend:${{ github.sha }} \
-          ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/backend:${{ github.sha }}
+#       - name: Tag & Push backend image to ACR
+#         run: |
+#           docker tag backend:${{ github.sha }} \
+#           ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/backend:${{ github.sha }}
 
-          docker push \
-          ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/backend:${{ github.sha }}
+#           docker push \
+#           ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/backend:${{ github.sha }}
 
-      - name: Tag & Push frontend image to ACR
-        run: |
-          docker tag frontend-azure:${{ github.sha }} \
-          ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}
+#       - name: Tag & Push frontend image to ACR
+#         run: |
+#           docker tag frontend-azure:${{ github.sha }} \
+#           ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}
 
-          docker push \
-          ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}
+#           docker push \
+#           ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}
 
-  # ---------------- AZURE DEPLOY ----------------
-  deploy-azure:
-    if: github.ref == 'refs/heads/main'
-    needs: backend-and-frontend-ci
-    runs-on: ubuntu-latest
+#   # ---------------- AZURE DEPLOY ----------------
+#   deploy-azure:
+#     if: github.ref == 'refs/heads/main'
+#     needs: backend-and-frontend-ci
+#     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
+#     steps:
+#     - name: Checkout repo
+#       uses: actions/checkout@v4
 
-    - name: Azure Login
-      uses: azure/login@v2
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+#     - name: Azure Login
+#       uses: azure/login@v2
+#       with:
+#         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
+#     - name: Setup Terraform
+#       uses: hashicorp/setup-terraform@v3
 
-    - name: Terraform Init (Azure backend)
-      working-directory: terraform/azure
-      run: terraform init
+#     - name: Terraform Init (Azure backend)
+#       working-directory: terraform/azure
+#       run: terraform init
 
-    - name: Terraform Apply (deploy Azure images)
-      working-directory: terraform/azure
-      run: |
-        terraform apply -auto-approve \
-          -var="backend_image=${{ secrets.AZURE_ACR_NAME }}.azurecr.io/backend:${{ github.sha }}" \
-          -var="frontend_image=${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}"
+#     - name: Terraform Apply (deploy Azure images)
+#       working-directory: terraform/azure
+#       run: |
+#         terraform apply -auto-approve \
+#           -var="backend_image=${{ secrets.AZURE_ACR_NAME }}.azurecr.io/backend:${{ github.sha }}" \
+#           -var="frontend_image=${{ secrets.AZURE_ACR_NAME }}.azurecr.io/frontend:${{ github.sha }}"
 
-  # # ---------------- AWS DEPLOY -----------------
-  # deploy-aws:
-  #   if: github.ref == 'refs/heads/main'
-  #   needs: backend-and-frontend-ci
-  #   runs-on: ubuntu-latest
+#   # # ---------------- AWS DEPLOY -----------------
+#   # deploy-aws:
+#   #   if: github.ref == 'refs/heads/main'
+#   #   needs: backend-and-frontend-ci
+#   #   runs-on: ubuntu-latest
 
-  #   steps:
-  #   - name: Checkout repo
-  #     uses: actions/checkout@v4
+#   #   steps:
+#   #   - name: Checkout repo
+#   #     uses: actions/checkout@v4
 
-  #   - name: Configure AWS credentials
-  #     uses: aws-actions/configure-aws-credentials@v4
-  #     with:
-  #       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #       aws-region: ${{ secrets.AWS_REGION }}
+#   #   - name: Configure AWS credentials
+#   #     uses: aws-actions/configure-aws-credentials@v4
+#   #     with:
+#   #       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#   #       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#   #       aws-region: ${{ secrets.AWS_REGION }}
 
-  #   - name: Setup Terraform
-  #     uses: hashicorp/setup-terraform@v3
+#   #   - name: Setup Terraform
+#   #     uses: hashicorp/setup-terraform@v3
 
-  #   - name: Terraform Init
-  #     working-directory: terraform/aws
-  #     run: terraform init
+#   #   - name: Terraform Init
+#   #     working-directory: terraform/aws
+#   #     run: terraform init
 
-  #   - name: Terraform Apply (deploy new images)
-  #     working-directory: terraform/aws
-  #     run: |
-  #       terraform apply -auto-approve \
-  #       -var="backend_image=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/backend:${{ github.sha }}" \
-  #       -var="frontend_image=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }}"
+#   #   - name: Terraform Apply (deploy new images)
+#   #     working-directory: terraform/aws
+#   #     run: |
+#   #       terraform apply -auto-approve \
+#   #       -var="backend_image=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/backend:${{ github.sha }}" \
+#   #       -var="frontend_image=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }}"
