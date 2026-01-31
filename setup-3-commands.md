@@ -183,7 +183,7 @@
     </tr>
     <tr>
       <td>Resource group</td>
-      <td>devops-assignment-rg</td>
+      <td>rg-devops-assignment</td>
     </tr>
     <tr>
       <td>Action group name</td>
